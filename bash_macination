@@ -1,0 +1,3 @@
+alias speedtracer='open /Applications/Google\ Chrome\ Dev.app --args "--enable-extension-timeline-api"'
+alias killxcode='sudo /Developer/Library/uninstall-devtools --mode=all'
+
