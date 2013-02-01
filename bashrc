@@ -23,7 +23,9 @@ PROMPT_COMMAND=abbrev
 case "$(uname -s)" in
 
     # OS X needs Homebrew dirs in the path
-    Darwin) PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/usr/local/share/python/:${PATH} ;;
+    Darwin) PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:${PATH} #:${HOME}.rvm/bin
+        [[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
+        ;;
     CYGWIN*)
         cygwin=true
         echo -ne '\e]4;1;#dc322f\a'  # red
