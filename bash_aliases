@@ -4,8 +4,8 @@ alias l='ls -CF'
 
 alias vi='vim'
 
-alias now="date '+%Y-%M-%dT%H:%M:%S%z'"
-alias nowc="date '+%Y%M%dT%H%M%S%Z'"
+alias now="date '+%Y-%m-%dT%H:%M:%S%z'"
+alias nowc="date '+%Y%m%dT%H%M%S%Z'"
 
 alias zulu="date -u '+%Y-%m-%dT%H:%M:%S%z'"
 alias zuluc="date -u '+%Y%m%dT%H%M%SZ'"
