@@ -5,8 +5,8 @@ alias l='ls -CF'
 alias now="date '+%Y-%M-%dT%H:%M:%S%z'"
 alias nowc="date '+%Y%M%dT%H%M%S%Z'"
 
-alias zulu="date -u '+%Y-%M-%dT%H:%M:%S%z'"
-alias zuluc="date -u '+%Y%M%dT%H%M%SZ'"
+alias zulu="date -u '+%Y-%m-%dT%H:%M:%S%z'"
+alias zuluc="date -u '+%Y%m%dT%H%M%SZ'"
 
 alias tmuxa='tmux -2 attach -t'
 alias tmux='tmux -2'
