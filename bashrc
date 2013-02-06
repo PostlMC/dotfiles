@@ -22,8 +22,10 @@ PROMPT_COMMAND=abbrev
 # Do all the OS-specific junk
 case "$(uname -s)" in
 
-    # OS X needs MacPorts dirs in the path
-    Darwin) PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/homebrew/bin:${PATH} ;;
+    # OS X needs Homebrew dirs in the path
+    Darwin) PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:${PATH} #:${HOME}.rvm/bin
+        [[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
+        ;;
     CYGWIN*)
         cygwin=true
         echo -ne '\e]4;1;#dc322f\a'  # red
