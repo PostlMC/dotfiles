@@ -16,52 +16,43 @@ real_path () {
 SCRIPT_DIR=$(real_path $0)
 SCRIPT_PATH=${SCRIPT_DIR}/`basename $0`
 FORCE=0
-PREFIX=$HOME
+PREFIX=${HOME}
 
 while getopts "fp:" flag
 do
     case "$flag" in
-        f) FORCE=1 ;;
-        p) PREFIX=$OPTARG ;;
+        f) FORCE=1; echo "Forcibly linking as needed" ;;
+        p) PREFIX=${OPTARG} ;;
     esac
 done
-
-PREFIX=${PREFIX%/}
 
 for FILE_PATH in ${SCRIPT_DIR}/*
 do
     FILE=$(basename $FILE_PATH)
-    HOME_PATH=$PREFIX/.${FILE}
+    HOME_PATH=${PREFIX}/.${FILE}
 
-    if [[ $FILE_PATH = $SCRIPT_PATH ]]
+    if [[ ${FILE_PATH} = ${SCRIPT_PATH} || ${FILE} = README* || ${FILE:0:1} = '.' ]]
     then
+        echo "Ignoring ${FILE_PATH}"
         continue
     fi
 
-    if [[ $FILE = README* ]]
+    if [[ ${FORCE} -eq 0 && -e ${HOME_PATH} ]]
     then
-        echo Skipping README file
+        echo "${HOME_PATH} already exists, use -f to force overwrite"
         continue
     fi
 
-    if [[ $FILE_PATH = $SCRIPT_PATH || ${FILE:0:1} = '.' ]]
+    if [[ ${FORCE} -eq 1 ]]
     then
-        continue
-    fi
-
-    if [[ $FORCE -eq 0 && -e $HOME_PATH ]]
-    then
-        echo Skipping $FILE_PATH
-        continue
-    fi
-
-    if [[ $FORCE -eq 1 && -e $HOME_PATH ]]
-    then
-        echo Forcably linking $FILE_PATH to $HOME_PATH
-        rm -f $HOME_PATH
+        if [[ -e ${HOME_PATH} || -L ${HOME_PATH} ]]
+        then
+            echo "Forcibly linking ${HOME_PATH} to ${FILE_PATH}"
+            rm -f ${HOME_PATH}
+        fi
     else
-        echo Linking $FILE_PATH to $HOME_PATH
+        echo "Linking ${HOME_PATH} to ${FILE_PATH}"
     fi
 
-    ln -s $FILE_PATH $HOME_PATH
+    ln -s ${FILE_PATH} ${HOME_PATH}
 done
