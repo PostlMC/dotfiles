@@ -2,8 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-set -o vi
-
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -19,13 +17,21 @@ function abbrev {
 }
 PROMPT_COMMAND=abbrev
 
-# Do all the OS-specific junk
+# Old habits die hard
+set -o vi
+
+# Set up my common PATH directories
+[ -d "${HOME}/.hosts" ] && PATH=${HOME}/.hosts:${PATH}
+[ -d "${HOME}/bin" ] && PATH=${HOME}/bin:${PATH}
+
+# Do all my OS-specific PATH junk
 case "$(uname -s)" in
 
     # OS X needs Homebrew dirs in the path
     Darwin) PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:${PATH} #:${HOME}.rvm/bin
         [[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
         ;;
+
     CYGWIN*)
         cygwin=true
         echo -ne '\e]4;1;#dc322f\a'  # red
@@ -47,20 +53,8 @@ case "$(uname -s)" in
         echo -ne '\e]11;#002b36\a'  # background -> base03
         echo -ne '\e]12;#93a1a1\a'  # cursor -> base1
     ;;
+
 esac
-
-# Set up my common PATH directories
-if [ -d "${HOME}/.hosts" ]; then
-    PATH=${HOME}/.hosts:${PATH}
-fi
-
-if [ -d "${HOME}/bin" ]; then 
-    PATH=${HOME}/bin:${PATH}
-fi
-
-if [ -d "/opt/isv/sbt/bin" ]; then
-    PATH=/opt/isv/sbt/bin:${PATH}
-fi
 
 export PATH
 
@@ -86,11 +80,6 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     linux) color_prompt=yes;;
@@ -112,20 +101,18 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[0;32m\]\u@\h:\[\033[0;33m\]${NEWPWD}>\[\033[0m\] '
+    PS1='\[\033[0;32m\]\u@\h:\[\033[0;33m\]${NEWPWD}>\[\033[0m\] '
 else
-    #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:${NEWPWD}> '
+    PS1='\u@\h:${NEWPWD}> '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    xterm*|rxvt*)
+        PS1="\[\e]0;\u@\h: \w\a\]$PS1"
     ;;
-*)
+    *)
     ;;
 esac
 
@@ -159,12 +146,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # Host-specific items: anything else that belongs only on the current box
-if [ -z "$cygwin" ]; then
-    HOST=$(hostname -s | tr A-Z a-z)
-else
-    HOST=$(hostname | tr A-Z a-z)
-fi
-
 if [ -f ~/.bash_${HOST} ]; then
     . ~/.bash_${HOST}
 fi
