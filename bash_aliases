@@ -5,6 +5,11 @@ alias l='ls -CF'
 alias ls-la='ls -la'
 alias ls-l='ls -l'
 
+alias ln-s='ln -s'
+
+alias rm-f='rm -f'
+alias rm-rf='rm -rf'
+
 alias vi='vim'
 
 alias now="date '+%Y-%m-%dT%H:%M:%S%z'"
