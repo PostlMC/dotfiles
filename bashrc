@@ -34,6 +34,7 @@ case "$(uname -s)" in
 
     CYGWIN*)
         cygwin=true
+        PATH=/Program\ Files\ \(x86\)/Java/JDK\ 1.6.0_45/bin:${PATH}
         echo -ne '\e]4;1;#dc322f\a'  # red
         echo -ne '\e]4;2;#859900\a'  # green
         echo -ne '\e]4;3;#b58900\a'  # yellow
