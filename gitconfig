@@ -1,0 +1,21 @@
+[user]
+	name = Scott Thompson
+	email = scott@gicsm.org
+
+[color]
+    ui = true
+
+[diffs]
+    renames = True
+
+[core]
+	excludesfile = /home/scott/.gitignore_global
+
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+
+	trustExitCode = true
