@@ -19,6 +19,7 @@ PROMPT_COMMAND=abbrev
 
 # Old habits die hard
 set -o vi
+export GIT_CURL_VERBOSE=1
 
 # Set up my common PATH directories
 [ -d "${HOME}/.hosts" ] && PATH=${HOME}/.hosts:${PATH}
@@ -128,8 +129,6 @@ if [ -x $(which dircolors) ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
-export EDITOR=/usr/bin/vim
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
