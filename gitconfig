@@ -9,7 +9,25 @@
     renames = True
 
 [core]
-	excludesfile = /home/scott/.gitignore_global
+	excludesfile = ~/.gitignore
+
+[alias]
+    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
+    ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    s = status -s
+    c = commit -am
+    a = add
+    f = fetch --all
+    p = pull --ff-only
+    m = merge
+    d = diff
+    rb = rebase
+    co = checkout
+    br = branch
+    ps = push
+
+[color]
+    ui = true
 
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
@@ -19,3 +37,19 @@
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 
 	trustExitCode = true
+
+[url "git@github.com:"]
+    insteadOf = "gh:"
+    pushInsteadOf = "github:"
+    pushInsteadOf = "git://github.com/"
+
+[url "git://github.com/"]
+    insteadOf = "github:"
+
+[url "git@bitbucket.org:"]
+    insteadOf = "bb:"
+    pushInsteadOf = "bitbucket:"
+    pushInsteadOf = "git://bitbucket.org/"
+
+[url "git://bitbucket.org/"]
+    insteadOf = "bitbucket:"

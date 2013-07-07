@@ -22,20 +22,19 @@ set -o vi
 export GIT_CURL_VERBOSE=1
 
 # Set up my common PATH directories
-[ -d "${HOME}/.hosts" ] && PATH=${HOME}/.hosts:${PATH}
 [ -d "${HOME}/bin" ] && PATH=${HOME}/bin:${PATH}
+[ -d "${HOME}/.hosts" ] && PATH=${HOME}/.hosts:${PATH}
 
 # Do all my OS-specific PATH junk
 case "$(uname -s)" in
 
     # OS X needs Homebrew dirs in the path
-    Darwin) PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:${PATH} #:${HOME}.rvm/bin
-        [[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
+    Darwin) HOST=$(hostname -s)
+        PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:${PATH}
         ;;
 
     CYGWIN*)
         cygwin=true
-        PATH=/Program\ Files\ \(x86\)/Java/JDK\ 1.6.0_45/bin:${PATH}
         echo -ne '\e]4;1;#dc322f\a'  # red
         echo -ne '\e]4;2;#859900\a'  # green
         echo -ne '\e]4;3;#b58900\a'  # yellow
@@ -54,8 +53,7 @@ case "$(uname -s)" in
         echo -ne '\e]10;#657b83\a'  # foreground -> base00
         echo -ne '\e]11;#002b36\a'  # background -> base03
         echo -ne '\e]12;#93a1a1\a'  # cursor -> base1
-    ;;
-
+        ;;
 esac
 
 export PATH
@@ -113,9 +111,9 @@ unset color_prompt force_color_prompt
 case "$TERM" in
     xterm*|rxvt*)
         PS1="\[\e]0;\u@\h: \w\a\]$PS1"
-    ;;
+        ;;
     *)
-    ;;
+        ;;
 esac
 
 # enable color support of ls and also add handy aliases
@@ -146,6 +144,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # Host-specific items: anything else that belongs only on the current box
-if [ -f ~/.bash_${HOST} ]; then
-    . ~/.bash_${HOST}
+
+if [ -f ~/.dotfiles.local/${HOST} ]; then
+    . ~/.dotfiles.local/${HOST}
 fi
