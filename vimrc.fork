@@ -1,7 +1,0 @@
-" I've become an Inconsolata nut lately...
-if has('gui_macvim')
-    set transparency=2
-    set guifont=Inconsolata\ Regular\ 11,Consolas\ Regular\ 11,Courier\ New\ Regular\ 13
-    set lines=50 columns=132
-endif
-
