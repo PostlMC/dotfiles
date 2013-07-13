@@ -24,6 +24,11 @@
 *.sql
 *.sqlite
 
+# Editor droppings #
+####################
+*.sublime-project
+*.sublime-workspace
+
 # OS generated files #
 ######################
 .DS_Store
