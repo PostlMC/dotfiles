@@ -28,8 +28,11 @@ export GIT_CURL_VERBOSE=1
 # Do all my OS-specific PATH junk
 case "$(uname -s)" in
 
-    # OS X needs Homebrew dirs in the path
-    Darwin) HOST=$(hostname -s)
+    Linux) HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")
+        ;;
+
+    Darwin) HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")
+        # OS X needs Homebrew dirs in the path
         PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:${PATH}
         ;;
 
@@ -148,3 +151,4 @@ fi
 if [ -f ~/.dotfiles.local/${HOST} ]; then
     . ~/.dotfiles.local/${HOST}
 fi
+
