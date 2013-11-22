@@ -5,6 +5,8 @@ alias l='ls -CF'
 alias ls-la='ls -la'
 alias ls-l='ls -l'
 
+alias lso="ls -alG | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\" %0o \",k);print}'"
+
 alias ln-s='ln -s'
 
 alias rm-f='rm -f'
