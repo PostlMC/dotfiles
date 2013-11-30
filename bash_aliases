@@ -8,6 +8,7 @@ alias ls-l='ls -l'
 alias lso="ls -alG | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\" %0o \",k);print}'"
 
 alias ln-s='ln -s'
+alias badlinks='for i in $(find . -type l); do [ -e $i ] || echo $i is broken; done'
 
 alias rm-f='rm -f'
 alias rm-rf='rm -rf'
@@ -21,6 +22,8 @@ alias zuluc="date -u '+%Y%m%dT%H%M%SZ'"
 alias tmuxa='tmux -2 attach -t'
 alias tmux='tmux -2'
 
+alias tailall='find /var/log | xargs file | grep text | cut -f 1 -d : | xargs tail -F'
+
 alias html2ascii='lynx -force_html -stdin -dump -nolist'
 
 alias g++='g++ -std=c++0x'
@@ -28,5 +31,4 @@ alias g++='g++ -std=c++0x'
 #alias myip="curl -s checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//'"
 alias myip='curl -s ifconfig.me/ip'
 
-alias pip_upgrade_all='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U'
-
+alias pipup='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs sudo pip install -U'
