@@ -32,3 +32,13 @@ alias g++='g++ -std=c++0x'
 alias myip='curl -s ifconfig.me/ip'
 
 alias pipup='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs sudo pip install -U'
+
+alias apnic='whois -h whois.apnic.net'
+alias ripe='whois -h whois.ripe.net'
+alias arin='whois -h whois.arin.net'
+alias afrinic='whois -h whois.afrinic.net'
+alias lacnic='whois -h whois.lacnic.net'
+alias org='whois -h whois.pir.org'
+alias edu='whois -h whois.educause.edu'
+alias cctld='whois -h whois.iana.org'
+alias bgp='whois -h riswhois.ripe.net'
