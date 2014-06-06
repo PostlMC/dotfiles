@@ -17,6 +17,11 @@ function abbrev {
 }
 PROMPT_COMMAND=abbrev
 
+# Yes, ssh-copy-id will work, but may not always be there (OS/X)
+function push-ssh-key {
+  ssh "echo '`cat ~/.ssh/id_rsa.pub`' >> ~/.ssh/authorized_keys"
+}
+
 # Old habits die hard
 set -o vi
 export GIT_CURL_VERBOSE=1
