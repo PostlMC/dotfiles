@@ -22,7 +22,8 @@ alias zuluc="date -u '+%Y%m%dT%H%M%SZ'"
 alias tmuxa='tmux -2 attach -t'
 alias tmux='tmux -2'
 
-alias tailall='find /var/log | xargs file | grep text | cut -f 1 -d : | xargs tail -F'
+# WTF?
+#alias tailall='find /var/log | xargs file | grep text | cut -f 1 -d : | xargs tail -F'
 
 alias html2ascii='lynx -force_html -stdin -dump -nolist'
 
