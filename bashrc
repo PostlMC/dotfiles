@@ -34,9 +34,11 @@ export GIT_CURL_VERBOSE=1
 case "$(uname -s)" in
 
     Linux) HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")
+        OS=$(uname|tr "[:upper:]" "[:lower:]")
         ;;
 
     Darwin) HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")
+        OS=$(uname|tr "[:upper:]" "[:lower:]")
         # OS X needs Homebrew dirs in the path
         PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:${PATH}
         ;;
@@ -149,6 +151,12 @@ fi
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
+fi
+
+# OS-specific items: anything else that belongs only on the current OS
+
+if [ -f ~/.dotfiles.local/${OS} ]; then
+    . ~/.dotfiles.local/${OS}
 fi
 
 # Host-specific items: anything else that belongs only on the current box
