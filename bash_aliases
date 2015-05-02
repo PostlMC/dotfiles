@@ -32,7 +32,11 @@ alias g++='g++ -std=c++0x'
 #alias myip="curl -s checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//'"
 alias myip='curl -s ifconfig.me/ip'
 
-alias pipup='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs sudo pip install -U'
+alias sclient='echo | openssl s_client -showcerts -connect '
+
+alias sortips='sort -t . -k 1,1n -k 2,2n -k 3,3n -k 4,4n'
+
+alias pipup='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {} sudo pip install -U {} --allow-external {} --allow-unverified {}'
 
 alias apnic='whois -h whois.apnic.net'
 alias ripe='whois -h whois.ripe.net'
