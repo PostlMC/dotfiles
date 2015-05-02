@@ -53,3 +53,7 @@ alias org='whois -h whois.pir.org'
 alias edu='whois -h whois.educause.edu'
 alias cctld='whois -h whois.iana.org'
 alias bgp='whois -h riswhois.ripe.net'
+
+aese() {
+	openssl aes-256-cbc -e -in "${1}" -out "${1}.enc"
+}
