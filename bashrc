@@ -30,20 +30,17 @@ export GIT_CURL_VERBOSE=1
 [ -d "${HOME}/bin" ] && PATH=${HOME}/bin:${PATH}
 [ -d "${HOME}/.hosts" ] && PATH=${HOME}/.hosts:${PATH}
 
-# Do all my OS-specific PATH junk
-case "$(uname -s)" in
+# Do some OS-specific junk
+OS=$(uname|awk -F "(_|/|-)" '{print $1}'|tr "[:upper:]" "[:lower:]")
+case "${OS}" in
 
-    Linux)
-        OS=$(uname|tr "[:upper:]" "[:lower:]")
-        ;;
-
-    Darwin)
-        OS=$(uname|tr "[:upper:]" "[:lower:]")
+    darwin)
         # OS X needs Homebrew dirs in the path
         PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:${PATH}
         ;;
 
-    CYGWIN*) 
+    cygwin)
+        # Set Solarized Dark(-ish) colors for terminals
         echo -ne '\e]4;1;#dc322f\a'  # red
         echo -ne '\e]4;2;#859900\a'  # green
         echo -ne '\e]4;3;#b58900\a'  # yellow
@@ -129,36 +126,27 @@ esac
 if [ -x $(which dircolors) ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
 # OS-specific items: anything else that belongs only on the current OS
-
-if [ -f ~/.dotfiles.local/${OS} ]; then
-    . ~/.dotfiles.local/${OS}
+OS=$(uname|awk -F "(_|/|-)" '{print $1}'|tr "[:upper:]" "[:lower:]")
+if [ -f ~/.dotfiles/${OS} ]; then
+    . ~/.dotfiles/${OS}
 fi
 
-# Host-specific items: anything else that belongs only on the current box
+# Host-specific items: anything else that belongs only on the current host
 HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")
 if [ -f ~/.dotfiles.local/${HOST} ]; then
     . ~/.dotfiles.local/${HOST}
