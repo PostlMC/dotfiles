@@ -54,6 +54,13 @@ alias edu='whois -h whois.educause.edu'
 alias cctld='whois -h whois.iana.org'
 alias bgp='whois -h riswhois.ripe.net'
 
+alias ssl2='openssl s_client -ssl2 -connect'
+alias ssl3='openssl s_client -ssl3 -connect'
+alias tls1_2='openssl s_client -tls1_2 -connect'
+alias tls1_1='openssl s_client -tls1_1 -connect'
+alias tls1='openssl s_client -tls1 -connect'
+alias dtls1='openssl s_client -dtls1 -connect'
+
 aese() {
 	openssl aes-256-cbc -e -in "${1}" -out "${1}.enc"
 }
