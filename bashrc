@@ -33,18 +33,17 @@ export GIT_CURL_VERBOSE=1
 # Do all my OS-specific PATH junk
 case "$(uname -s)" in
 
-    Linux) HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")
+    Linux)
         OS=$(uname|tr "[:upper:]" "[:lower:]")
         ;;
 
-    Darwin) HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")
+    Darwin)
         OS=$(uname|tr "[:upper:]" "[:lower:]")
         # OS X needs Homebrew dirs in the path
         PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:${PATH}
         ;;
 
-    CYGWIN*)
-        cygwin=true
+    CYGWIN*) 
         echo -ne '\e]4;1;#dc322f\a'  # red
         echo -ne '\e]4;2;#859900\a'  # green
         echo -ne '\e]4;3;#b58900\a'  # yellow
@@ -160,7 +159,7 @@ if [ -f ~/.dotfiles.local/${OS} ]; then
 fi
 
 # Host-specific items: anything else that belongs only on the current box
-
+HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")
 if [ -f ~/.dotfiles.local/${HOST} ]; then
     . ~/.dotfiles.local/${HOST}
 fi
