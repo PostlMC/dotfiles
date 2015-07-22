@@ -24,7 +24,13 @@ alias nowc="date '+%Y%m%dT%H%M%S%Z'"
 alias zulu="date -u '+%Y-%m-%dT%H:%M:%S%z'"
 alias zuluc="date -u '+%Y%m%dT%H%M%SZ'"
 
-## 
+# Misc
+## Generate SSH aliai (shortcuts) for known hosts
+for HOST in $(awk '/^Host/ && $2!~/\*/ {print $2}' ~/.ssh/config)
+do
+    alias ${HOST}="ssh ${HOST}"
+done
+
 alias tmux='tmux -2'
 alias tmuxa='tmux -2 attach -t'
 
