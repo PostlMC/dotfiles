@@ -22,7 +22,6 @@ function push-ssh-key {
   ssh "echo '`cat ~/.ssh/id_rsa.pub`' >> ~/.ssh/authorized_keys"
 }
 
-# Old habits die hard
 set -o vi
 export GIT_CURL_VERBOSE=1
 
@@ -66,16 +65,9 @@ export PATH
 
 export R_HISTFILE=~/.Rhistory
 
-# don't put duplicate lines in the history. See bash(1) for more options
-# don't overwrite GNU Midnight Commander's setting of `ignorespace'.
-#HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups
-# ... or force ignoredups and ignorespace
 HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
 shopt -s histappend
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
 
@@ -86,7 +78,6 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     linux) color_prompt=yes;;
     screen-256color) color_prompt=yes;;
@@ -94,16 +85,10 @@ case "$TERM" in
     xterm-256color) color_prompt=yes;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 &>/dev/null; then
-        color_prompt=yes
-    else
-        color_prompt=
-    fi
+if [ -x /usr/bin/tput ] && tput setaf 1 &>/dev/null; then
+    color_prompt=yes
+else
+    color_prompt=
 fi
 
 if [ "$color_prompt" = yes ]; then
@@ -142,8 +127,8 @@ fi
 
 # OS-specific items: anything else that belongs only on the current OS
 OS=$(uname|awk -F "(_|/|-)" '{print $1}'|tr "[:upper:]" "[:lower:]")
-if [ -f ~/.dotfiles/${OS} ]; then
-    . ~/.dotfiles/${OS}
+if [ -f ~/.dotfiles.local/bashrc.${OS} ]; then
+    . ~/.dotfiles.local/bashrc.${OS}
 fi
 
 # Host-specific items: anything else that belongs only on the current host
