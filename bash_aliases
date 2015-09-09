@@ -26,10 +26,13 @@ alias zuluc="date -u '+%Y%m%dT%H%M%SZ'"
 
 # Misc
 ## Generate SSH aliai (shortcuts) for known hosts
-for HOST in $(awk '/^Host/ && $2!~/\*/ {print $2}' ~/.ssh/config)
-do
-    alias ${HOST}="ssh ${HOST}"
-done
+if [ -s ~/.ssh/config ]
+then 
+    for HOST in $(awk '/^Host/ && $2!~/\*/ {print $2}' ~/.ssh/config)
+    do
+        alias ${HOST}="ssh ${HOST}"
+    done
+fi
 
 alias tmux='tmux -2'
 alias tmuxa='tmux -2 attach -t'
@@ -68,5 +71,5 @@ alias tls1='openssl s_client -tls1 -connect'
 alias dtls1='openssl s_client -dtls1 -connect'
 
 aese() {
-	openssl aes-256-cbc -e -in "${1}" -out "${1}.enc"
+    openssl aes-256-cbc -e -in "${1}" -out "${1}.enc"
 }
