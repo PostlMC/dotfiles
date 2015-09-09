@@ -23,7 +23,6 @@ function push-ssh-key {
 }
 
 set -o vi
-export GIT_CURL_VERBOSE=1
 
 # Set up my common PATH directories
 [ -d "${HOME}/bin" ] && PATH=${HOME}/bin:${PATH}
