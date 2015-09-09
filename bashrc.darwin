@@ -3,4 +3,8 @@ alias brewup='brew update && brew upgrade $(brew outdated)'
 alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder'
 alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder'
 
+alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
+
 export COPYFILE_DISABLE=true
+
+defaults write com.apple.desktopservices DSDontWriteNetworkStores true
