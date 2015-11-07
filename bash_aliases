@@ -44,8 +44,9 @@ alias html2ascii='lynx -force_html -stdin -dump -nolist'
 
 alias g++='g++ -std=c++0x'
 
-alias myip="curl -s http://checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'"
+#alias myip="curl -s http://checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'"
 #alias myip='curl -s http://ifconfig.me/ip'
+alias myip='curl -s http://www.gicsm.org/u/ip.php'
 
 alias sclient='echo | openssl s_client -showcerts -connect '
 
