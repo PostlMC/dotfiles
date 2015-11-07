@@ -8,3 +8,6 @@ alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/
 export COPYFILE_DISABLE=true
 
 defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+
+alias cpuinfo='sysctl -n machdep.cpu.brand_string'
+
