@@ -1,3 +1,37 @@
-*~
+# Binaries
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Archives
+*.tar
+*.gz
+*.zip
+*.7z
+*.dmg
+*.iso
+*.jar
+*.rar
+
+# DBs
+*.sqlite
+
+# OS droppings
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
 .AppleDouble
+ehthumbs.db
+Thumbs.db
+*~
+
+# Editor droppings
+*.sublime-project
+*.sublime-workspace
+*.swp
+
