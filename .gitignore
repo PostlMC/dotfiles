@@ -1,5 +1,4 @@
-# Compiled source #
-###################
+# Binaries
 *.com
 *.class
 *.dll
@@ -7,8 +6,10 @@
 *.o
 *.so
 
-# Packages #
-############
+# Archives
+*.tar
+*.gz
+*.zip
 *.7z
 *.dmg
 *.gz
@@ -18,24 +19,25 @@
 *.tar
 *.zip
 
-# Logs and databases #
-######################
+# Logs and databases
 *.log
 *.sql
 *.sqlite
 
-# Editor droppings #
-####################
-*.sublime-project
-*.sublime-workspace
-
-# OS generated files #
-######################
+# OS droppings
 .DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
 Icon?
+.AppleDouble
 ehthumbs.db
 Thumbs.db
+*~
+
+# Editor droppings
+*.sublime-project
+*.sublime-workspace
+*.swp
+
