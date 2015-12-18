@@ -11,3 +11,9 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores true
 
 alias cpuinfo='sysctl -n machdep.cpu.brand_string'
 
+# Animations to disable (for performance reasons) according to http://lifehacker.com/speed-up-an-old-mac-by-disabling-these-animations-1745282066
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+#defaults write -g QLPanelAnimationDuration -float 0
+#defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+defaults write com.apple.dock launchanim -bool false
+defaults write com.apple.finder DisableAllAnimations -bool true
