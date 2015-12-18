@@ -135,4 +135,3 @@ HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")
 if [ -f ~/.dotfiles.local/${HOST} ]; then
     . ~/.dotfiles.local/${HOST}
 fi
-
