@@ -1,21 +1,11 @@
-[user]
-    name = Scott Thompson
-    email = scott@gicsm.org
-
-[color]
-    ui = true
-
-[diffs]
-    renames = True
-
 [core]
-    excludesfile = /Users/scott/.gitignore
+    excludesfile = ~/.gitignore
 
 [alias]
     l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
     ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     s = status -s
-    c = commit -am
+    c = commit -m
     a = add
     f = fetch --all
     p = pull --ff-only
@@ -28,6 +18,12 @@
 
 [color]
     ui = true
+
+[diffs]
+    renames = True
+
+[push]
+    default = simple
 
 [url "git@github.com:"]
     insteadOf = "gh:"
@@ -50,9 +46,6 @@
     clean = git media clean %f
     smudge = git media smudge %f
 
-[push]
-    default = simple
-
 [filter "hawser"]
     clean = git hawser clean %f
     smudge = git hawser smudge %f
@@ -62,3 +55,6 @@
     clean = git lfs clean %f
     smudge = git lfs smudge %f
     required = true
+
+[include]
+    path = ~/.gituser
