@@ -58,3 +58,4 @@
 
 [include]
     path = ~/.gituser
+    path = ~/.gitsystem
