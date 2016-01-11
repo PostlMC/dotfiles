@@ -1,0 +1,14 @@
+{
+  "plugins": {
+    "lint": {
+        "no-multiple-toplevel-headings": false,
+        "maximum-line-length": 120,
+        "emphasis-marker": "_",
+        "strong-marker": "*",
+        "no-html": false
+    }
+  },
+  "settings": {
+    "commonmark": true
+  }
+}
