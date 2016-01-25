@@ -45,7 +45,7 @@ alias sclient='echo | openssl s_client -showcerts -connect '
 
 alias sortip='sort -t . -k 1,1n -k 2,2n -k 3,3n -k 4,4n'
 
-alias pipup='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {} sudo -H pip install -U {} --allow-external {} --allow-unverified {}'
+alias pipup='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {} sudo -H pip install -U {} --allow-unverified {}'
 
 alias apnic='whois -h whois.apnic.net'
 alias ripe='whois -h whois.ripe.net'
