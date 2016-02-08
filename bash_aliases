@@ -88,3 +88,6 @@ cert2key() {
     fi
 }
 
+get-chain() {
+    echo | openssl s_client -connect ${1}:${2} -showcerts 2>/dev/null | awk '/-----BEGIN/{out=sprintf("'${1}'-%02d.cer",++count); p=1} /-----END/{print > out; p=0} p{print > out}'
+}
