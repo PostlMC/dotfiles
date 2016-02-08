@@ -2,19 +2,22 @@
     excludesfile = ~/.gitignore
 
 [alias]
+    a = add
+    br = branch
+    c = commit -m
+    co = checkout
+    d = diff
+    f = fetch --all
     l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
     ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-    s = status -s
-    c = commit -m
-    a = add
-    f = fetch --all
-    p = pull --ff-only
     m = merge
-    d = diff
-    rb = rebase
-    co = checkout
-    br = branch
+    p = pull --ff-only
     ps = push
+    r = remote
+    rv = remote -v
+    ra = remote add
+    rb = rebase
+    s = status -s
 
 [color]
     ui = true
