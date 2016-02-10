@@ -1,5 +1,5 @@
 [core]
-    excludesfile = ~/.gitignore
+    filemode = false
 
 [alias]
     a = add
@@ -58,7 +58,3 @@
     clean = git lfs clean %f
     smudge = git lfs smudge %f
     required = true
-
-[include]
-    path = ~/.gituser
-    path = ~/.gitsystem
