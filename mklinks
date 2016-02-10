@@ -31,7 +31,7 @@ do
     FILE=$(basename $FILE_PATH)
     HOME_PATH=${PREFIX}/.${FILE}
 
-    if [[ ${FILE_PATH} = ${SCRIPT_PATH} || ${FILE} = README* || ${FILE:0:1} = '.' ]]
+    if [[ ${FILE_PATH} = ${SCRIPT_PATH} || ${FILE} = README* || ${FILE} = gitconfig || ${FILE:0:1} = '.' ]]
     then
         echo "Ignoring ${FILE_PATH}"
         continue
