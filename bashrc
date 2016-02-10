@@ -84,11 +84,11 @@ case "$TERM" in
     xterm-256color) color_prompt=yes;;
 esac
 
-if [ -x /usr/bin/tput ] && tput setaf 1 &>/dev/null; then
-    color_prompt=yes
-else
-    color_prompt=
-fi
+#if [ -x /usr/bin/tput ] && tput setaf 1 &>/dev/null; then
+#    color_prompt=yes
+#else
+#    color_prompt=
+#fi
 
 if [ "$color_prompt" = yes ]; then
     PS1='\[\033[0;32m\]\u@\h:\[\033[0;33m\]${NEWPWD}>\[\033[0m\] '
