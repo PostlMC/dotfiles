@@ -126,12 +126,8 @@ fi
 
 # OS-specific items: anything else that belongs only on the current OS
 OS=$(uname|awk -F "(_|/|-)" '{print $1}'|tr "[:upper:]" "[:lower:]")
-if [ -f ~/.dotfiles/bashrc.${OS} ]; then
-    . ~/.dotfiles/bashrc.${OS}
-fi
+[[ -f ~/.dotfiles/${OS}.bashrc ]] && . ~/.dotfiles/${OS}.bashrc
 
 # Host-specific items: anything else that belongs only on the current host
 HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")
-if [ -f ~/.dotfiles.local/${HOST} ]; then
-    . ~/.dotfiles.local/${HOST}
-fi
+[[ -f ~/.dotfiles.local/${HOST}.bashrc ]] && . ~/.dotfiles.local/${HOST}.bashrc
