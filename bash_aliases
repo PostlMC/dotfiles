@@ -73,6 +73,8 @@ then
     done
 fi
 
+alias gitremotes='for DIR in $(find . -type d -maxdepth 1); do [[ -d ${DIR}/.git ]] && (cd ${DIR}; pwd; git remote -v); done'
+
 # Yes, these are functions, so maybe the file should be renamed ".bash_shorcuts"
 aesenc() {
     openssl aes-256-cbc -e -in "${1}" -out "${1}.enc"
