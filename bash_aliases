@@ -45,7 +45,7 @@ alias sclient='echo | openssl s_client -showcerts -connect '
 
 alias sortip='sort -t . -k 1,1n -k 2,2n -k 3,3n -k 4,4n'
 
-alias pipup='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {} sudo -H pip install -U {} --allow-unverified {}'
+alias pipup='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {} sudo -H pip install -U {}'
 
 alias apnic='whois -h whois.apnic.net'
 alias ripe='whois -h whois.ripe.net'
@@ -66,7 +66,7 @@ alias dtls1='openssl s_client -dtls1 -connect'
 
 ## Generate SSH aliases for known hosts
 if [ -s ~/.ssh/config ]
-then 
+then
     for HOST in $(awk '/^Host /&&$2!~/\*/{for(i=1;i<=NF;++i)if(i>1&&$i!~/\./)print $i}' ~/.ssh/config)
     do
         alias ${HOST}="ssh ${HOST}"
@@ -83,7 +83,7 @@ aesenc() {
 cert2key() {
     N=$((openssl x509 -noout -modulus -in ${1} | openssl md5; openssl rsa -noout -modulus -in ${2} | openssl md5) | uniq -c)
     if [ N == 1 ]
-    then 
+    then
         echo "Cert and key match"
     else
         echo "Cert and key do not match"
