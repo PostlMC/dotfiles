@@ -47,6 +47,9 @@ alias sortip='sort -t . -k 1,1n -k 2,2n -k 3,3n -k 4,4n'
 
 alias pipup='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {} sudo -H pip install -U {}'
 
+# curl-trace from https://github.com/wickett/dotfiles/blob/master/.curl-format
+alias curl-trace='curl -so /dev/null -w "@${HOME}/.dotfiles/curl-format"'
+
 alias apnic='whois -h whois.apnic.net'
 alias ripe='whois -h whois.ripe.net'
 alias arin='whois -h whois.arin.net'
