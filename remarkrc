@@ -6,7 +6,8 @@
         "maximum-heading-length": 120,
         "emphasis-marker": "_",
         "strong-marker": "*",
-        "no-html": false
+        "no-html": false,
+        "no-duplicate-headings": false
     }
   },
   "settings": {
