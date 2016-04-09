@@ -18,3 +18,5 @@ defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 #defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 defaults write com.apple.dock launchanim -bool false
 defaults write com.apple.finder DisableAllAnimations -bool true
+
+alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
