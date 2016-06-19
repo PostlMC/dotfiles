@@ -6,16 +6,16 @@
 [ -z "$PS1" ] && return
 
 # Create a nifty reverse-truncated path for the prompt
-function abbrev {
-    local pwd_length=40
-    if [ $(echo -n ${PWD} | wc -c | tr -d " ") -gt ${pwd_length} ]
-    then
-       NEWPWD="...$(echo -n ${PWD} | sed -e "s/.*\(.\{${pwd_length}\}\)/\1/")"
-    else
-       NEWPWD="$(echo -n ${PWD})"
-    fi
-}
-PROMPT_COMMAND=abbrev
+#function abbrev {
+#    local pwd_length=40
+#    if [ $(echo -n ${PWD} | wc -c | tr -d " ") -gt ${pwd_length} ]
+#    then
+#       NEWPWD="...$(echo -n ${PWD} | sed -e "s/.*\(.\{${pwd_length}\}\)/\1/")"
+#    else
+#       NEWPWD="$(echo -n ${PWD})"
+#    fi
+#}
+#PROMPT_COMMAND=abbrev
 
 # Yes, ssh-copy-id will work, but may not always be there (OS/X)
 function push-ssh-key {
@@ -90,21 +90,21 @@ esac
 #    color_prompt=
 #fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='\[\033[0;32m\]\u@\h:\[\033[0;33m\]${NEWPWD}>\[\033[0m\] '
-else
-    PS1='\u@\h:${NEWPWD}> '
-fi
-unset color_prompt force_color_prompt
+#if [ "$color_prompt" = yes ]; then
+#    PS1='\[\033[0;32m\]\u@\h:\[\033[0;33m\]${NEWPWD}>\[\033[0m\] '
+#else
+#    PS1='\u@\h:${NEWPWD}> '
+#fi
+#unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
-case "$TERM" in
-    xterm*|rxvt*)
-        PS1="\[\e]0;\u@\h: \w\a\]$PS1"
-        ;;
-    *)
-        ;;
-esac
+#case "$TERM" in
+#    xterm*|rxvt*)
+#        PS1="\[\e]0;\u@\h: \w\a\]$PS1"
+#        ;;
+#    *)
+#        ;;
+#esac
 
 # enable color support of ls and also add handy aliases
 if [ -x $(which dircolors) ]; then
