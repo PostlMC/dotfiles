@@ -4,15 +4,16 @@
 # Shamelessly copied from https://github.com/gf3/dotfiles
 
 default_username='unknown'
-OSNAME="OMGUNKNOWN: "
+OSNAME="OMGUNKNOWN"
 PROMPTCHAR="\$"
 
 # determine OS type
 if [ $(uname -s) = Darwin ]; then
-    OSNAME="OSX: "
-    PROMPTCHAR="🐳 "
+    OSNAME="OSX"
+    #PROMPTCHAR="🐳 "
+    PROMPTCHAR="∴ "
 else
-    OSNAME="OMGUNKNOWN: "
+    OSNAME="$(uname -o)"
 fi
 
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
@@ -68,7 +69,7 @@ function git_info() {
 function usernamehost() {
     if [ $USER != $default_username ]; then
 #        echo "${BLUE}${OSNAME}${MAGENTA}$USER${RESET}${BOLD}@${ORANGE}$HOSTNAME${RESET}${BOLD} in ";
-        echo "${BLUE}${OSNAME}${MAGENTA}$USER${RESET}@${ORANGE}$HOSTNAME${RESET} in ";
+        echo "${BLUE}[${OSNAME}] ${MAGENTA}$USER${RESET}@${ORANGE}$HOSTNAME${RESET}:";
     else
         echo "${BLUE}${OSNAME}";
     fi
@@ -85,5 +86,7 @@ function usernamehost() {
 # in the iterm tab
 # \[\e]1;\]$(basename $(dirname $PWD))/\W\[\a\]
 
+# Original PS1
 #PS1="\[\e]2;$PWD\[\a\]\[\e]1;\]$(basename "$(dirname "$PWD")")/\W\[\a\]${BOLD}\$(usernamehost)\[$GREEN\]\w\$(git_info)\[$RESET\]\[$BOLD\]\n${PROMPTCHAR} \[$RESET\]"
-PS1="\[\e]2;$PWD\[\a\]\[\e]1;\]$(basename "$(dirname "$PWD")")/\W\[\a\]\$(usernamehost)\[$GREEN\]\w\$(git_info)\[$RESET\]\n${PROMPTCHAR} \[$RESET\]"
+
+PS1="\n\[\e]2;$PWD\[\a\]\[\e]1;\]$(basename "$(dirname "$PWD")")/\W\[\a\]$(usernamehost)\[$GREEN\]\w\$(git_info)\[$RESET\]\n\[$BOLD\]\[$BLUE\]${PROMPTCHAR}\[$RESET\]"
