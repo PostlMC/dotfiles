@@ -116,16 +116,15 @@ if [ -x $(which dircolors) ]; then
     alias egrep='egrep --color=auto'
 fi
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+[[ -e ~/.dotfiles/bash_prompt ]] && . ~/.dotfiles/bash_prompt
+
+[[ -f ~/.dotfiles/bash_aliases ]] && . ~/.dotfiles/bash_aliases
 
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
 # OS-specific items: anything else that belongs only on the current OS
-OS=$(uname|awk -F "(_|/|-)" '{print $1}'|tr "[:upper:]" "[:lower:]")
 [[ -f ~/.dotfiles/${OS}.bashrc ]] && . ~/.dotfiles/${OS}.bashrc
 
 # Host-specific items: anything else that belongs only on the current host
