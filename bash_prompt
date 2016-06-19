@@ -5,7 +5,7 @@
 
 default_username='unknown'
 OSNAME="OMGUNKNOWN"
-PROMPTCHAR="\$"
+PROMPTCHAR="\$ "
 
 # determine OS type
 if [ $(uname -s) = Darwin ]; then
