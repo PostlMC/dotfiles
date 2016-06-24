@@ -20,3 +20,7 @@ defaults write com.apple.dock launchanim -bool false
 defaults write com.apple.finder DisableAllAnimations -bool true
 
 alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
+
+shrink-qcow2 () {
+    mv ${1} ${1}.BACKUP && qemu-img convert -O qcow2 ${1}.BACKUP ${1}
+}
