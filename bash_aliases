@@ -95,6 +95,9 @@ get-chain() {
 # Git
 alias gitremotes='for DIR in $(find . -type d -maxdepth 1); do [[ -d ${DIR}/.git ]] && (cd ${DIR}; pwd; git remote -v); done'
 
+ghostars () {
+    for ORG in $* ; do printf "$ORG: %s\n" $(curl -s https://api.github.com/orgs/$ORG/repos | jq '[ .[] | .stargazers_count ] | add'); done
+}
 
 # docker
 alias dpql='docker ps -ql'
