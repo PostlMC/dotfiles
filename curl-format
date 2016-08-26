@@ -15,4 +15,5 @@ Timing Analysis:\n
   time_starttransfer: %{time_starttransfer}\n
                       ----------\n
           time_total: %{time_total}\n
+      speed_download:  %{speed_download}\n
 \n
