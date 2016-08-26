@@ -7,6 +7,8 @@ alias fix-openwith='/System/Library/Frameworks/CoreServices.framework/Frameworks
 
 alias cpumodel='sysctl -n machdep.cpu.brand_string'
 
+alias reset-launchpad='defaults -currentHost write com.apple.dock ResetLaunchPad -bool true; killall Dock'
+
 export COPYFILE_DISABLE=true
 
 defaults write com.apple.desktopservices DSDontWriteNetworkStores true
@@ -23,3 +25,6 @@ alias flush-dns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
 shrink-qcow2 () {
     mv ${1} ${1}.BACKUP && qemu-img convert -O qcow2 ${1}.BACKUP ${1}
 }
+
+export HOMEBREW_NO_EMOJI=1
+export HOMEBREW_NO_ANALYTICS=1
