@@ -5,7 +5,6 @@ if [ "$SHLVL" = 1 ]; then
     [ -x /usr/bin/clear_console ] && /usr/bin/clear_console -q
 fi
 
-# Clear history
 > ~/.bash_history
 history -c
 
