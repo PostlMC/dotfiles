@@ -1,5 +1,4 @@
 alias brewup='brew update && brew upgrade $(brew outdated)'
-alias caveats="brew info $(brew list) | awk '/^==> Caveats$/,/^[a-z][a-zA-Z0-9_+-]+: stable |^==> (Dependencies|Options)$/'"
 
 alias show-files='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder'
 alias hide-files='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder'
