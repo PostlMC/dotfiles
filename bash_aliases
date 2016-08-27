@@ -94,15 +94,19 @@ dumpsitecerts() { echo | openssl s_client -connect ${1} -showcerts 2>/dev/null |
 
 
 # SSH 
-## Generate SSH aliases for shortnames in ~/.ssh/config
-if [ -s $HOME/.ssh/config ]
-then
-    for HOST in $(awk '/^Host /&&$2!~/\*/{for(i=1;i<=NF;++i)if(i>1&&$i!~/\./)print $i}' $HOME/.ssh/config)
-    do
-        alias $HOST="ssh $HOST"
-    done
-fi
-
+## Generate SSH aliases for shortnames in ~/.ssh/config (as a function so I can reload quickly)
+ssh-alias() {
+    if [ -s ${HOME}/.ssh/config ]
+    then
+        for HOST in $(awk '/^Host /&&$2!~/\*/{for(i=1;i<=NF;++i)if(i>1&&$i!~/\./)print $i}' ${HOME}/.ssh/config)
+        do
+            alias ${HOST}="ssh ${HOST}"
+        done
+    else
+        echo "No ~.ssh/config found."
+    fi
+}
+ssh-alias
 
 # Git
 ## TODO: deal with spaces in directory names
