@@ -35,11 +35,12 @@ alias ..5='cd ../../../../..'
 
 
 # ISO 8601 is your friend
-## Local (server) time
+
+# Local (server) time
 alias now="date '+%Y-%m-%dT%H:%M:%S%z'"
 alias nowc="date '+%Y%m%dT%H%M%S%Z'"
 
-## UTC (zulu) time
+# UTC (zulu) time
 alias zulu="date -u '+%Y-%m-%dT%H:%M:%S%z'"
 alias zuluc="date -u '+%Y%m%dT%H%M%SZ'"
 
@@ -49,7 +50,8 @@ alias pipup='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {} 
 
 
 # cURL
-## curl-trace from https://github.com/wickett/dotfiles/blob/master/.curl-format
+
+# curl-trace from https://github.com/wickett/dotfiles/blob/master/.curl-format
 alias curl-trace='curl -so /dev/null -w "@${HOME}/.dotfiles/curl-format"'
 
 
@@ -94,7 +96,8 @@ dumpsitecerts() { echo | openssl s_client -connect ${1} -showcerts 2>/dev/null |
 
 
 # SSH 
-## Generate SSH aliases for shortnames in ~/.ssh/config (as a function so I can reload quickly)
+
+# Generate SSH aliases for shortnames in ~/.ssh/config (as a function so I can reload quickly)
 ssh-alias() {
     if [ -s ${HOME}/.ssh/config ]
     then
@@ -109,7 +112,8 @@ ssh-alias() {
 ssh-alias
 
 # Git
-## TODO: deal with spaces in directory names
+
+# TODO: deal with spaces in directory names
 gitremotes() {
     for DIR in $(find . -type d)
     do
@@ -117,7 +121,7 @@ gitremotes() {
     done
 }
 
-## Assumes jq is available!
+# Assumes jq is available!
 ghostars() {
     for ORG in $*
     do
@@ -139,13 +143,14 @@ alias tmuxa='tmux -2 attach -t'
 
 
 # Misc
-## ls with numeric (octal) permissions at the start of each line
+
+# ls with numeric (octal) permissions at the start of each line
 alias lso="ls -alG | \
     awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\" %0o \",k);print}'"
 
 alias badlinks='for i in $(find . -type l); do [ -e $i ] || echo $i; done'
 
-## Assumes lynx is available!
+# Assumes lynx is available!
 alias html2ascii='lynx -force_html -stdin -dump -nolist'
 
 #alias myip="curl -s http://checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'"
@@ -154,7 +159,7 @@ alias myip='curl -s http://www.gicsm.org/u/ip.php'
 
 alias sortip='sort -t . -k 1,1n -k 2,2n -k 3,3n -k 4,4n'
 
-## I do not know why I keep these around
+# I do not know why I keep these around
 alias apnic='whois -h whois.apnic.net'
 alias ripe='whois -h whois.ripe.net'
 alias arin='whois -h whois.arin.net'
