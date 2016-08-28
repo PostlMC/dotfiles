@@ -5,18 +5,16 @@ set -o vi
 
 [ -d "${HOME}/bin" ] && PATH=${HOME}/bin:${PATH}
 
-# Host-specific items: anything that belongs only on the current host
-HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")
-[ -f ~/.dotfiles.local/$HOST.bashrc ] && . ~/.dotfiles.local/$HOST.bashrc
-
 # OS-specific items: anything that belongs only on the current OS
 OS=$(uname|awk -F "(_|/|-)" '{print $1}'|tr "[:upper:]" "[:lower:]")
 [ -f ~/.dotfiles/$OS.bashrc ] && . ~/.dotfiles/$OS.bashrc
 
+# Host-specific items: anything that belongs only on the current host
+HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")
+[ -f ~/.dotfiles.local/$HOST.bashrc ] && . ~/.dotfiles.local/$HOST.bashrc
+
 # Now just anything left that's purely local
 [ -f ~/.dotfiles.local/bashrc ] && . ~/.dotfiles.local/bashrc
-
-export PATH
 
 HISTCONTROL=ignoreboth
 HISTSIZE=1000
