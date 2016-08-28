@@ -111,6 +111,10 @@ ssh-alias() {
 }
 ssh-alias
 
+# For hosts where I immediately sudo su -
+root() { ssh $* -t "sudo su -"; }
+
+
 # Git
 
 # TODO: deal with spaces in directory names
@@ -135,6 +139,17 @@ ghostars() {
 alias dpql='docker ps -ql'
 alias dpsa='docker ps -a'
 alias dimgsize='docker images 2>&1 | awk '\''{sum+=$(NF-1)}END{print sum,"MB"};'\'''
+
+alias lookl33t='docker run -t --rm --name hollywood --net none jess/hollywood; docker rm -f hollywood; clear'
+
+# Potentially dangerous!
+alias docker-clean='docker rm $(docker ps -q -f 'status=exited') 2>/dev/null \
+    docker rmi $(docker images -q -f "dangling=true") 2>/dev/null \
+    docker volume rm $(docker volume ls -q -f 'dangling=true')  2>/dev/null'
+    
+docker-flatten() {
+    docker export $(docker run -d ${1} /bin/bash) | docker import – ${2}
+}
 
 
 # tmux
