@@ -86,13 +86,10 @@ get-chain() {
         awk '/-----BEGIN/{out=sprintf("'${1}'-%02d.cer",++count); p=1} /-----END/ {print > out; p=0} p {print > out}'
 }
 
-showp12cert() { openssl pkcs12 -in $1 -nokeys -clcerts | openssl x509 -noout -text; }
+show-p12cert() { openssl pkcs12 -in $1 -nokeys -clcerts | openssl x509 -noout -text; }
 
-dumpp7certs() { openssl pkcs7 -in $1 -print_certs | \
+dump-p7certs() { openssl pkcs7 -in $1 -print_certs | \
     awk '/-----BEGIN/ {out=sprintf("'${1%.*}'-%02d.cer",++count); p=1} /-----END/ {print > out; p=0} p {print > out}'; }
-
-dumpsitecerts() { echo | openssl s_client -connect ${1} -showcerts 2>/dev/null | \
-    awk '/-----BEGIN/ {out=sprintf("'${1}'-%02d.cer",++count); p=1} /-----END/ {print > out; p=0} p {print > out}'; }
 
 
 # SSH 
