@@ -1,5 +1,6 @@
 [core]
     filemode = false
+    excludesfile = ~/.gitignore
 
 [alias]
     a = add
