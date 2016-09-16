@@ -114,6 +114,8 @@ root() { ssh $* -t "sudo su -"; }
 
 # Git
 
+alias gitv='GIT_SSH_COMMAND="ssh -v" GIT_CURL_VERBOSE=1 GIT_TRACE=1 git'
+
 # TODO: deal with spaces in directory names
 gitremotes() {
     for DIR in $(find . -type d)
