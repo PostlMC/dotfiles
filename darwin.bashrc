@@ -48,3 +48,4 @@ shrink-qcow2 () {
     mv ${1} ${1}.BACKUP && qemu-img convert -O qcow2 ${1}.BACKUP ${1}
 }
 
+alias marked="open -a /Applications/Marked\\ 2.app"
