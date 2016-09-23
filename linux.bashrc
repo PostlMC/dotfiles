@@ -4,3 +4,4 @@ then
 fi
 
 alias pip-up='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {} sudo -EH pip install -U {}'
+alias pip3-up='pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {} sudo -EH pip3 install -U {}'
