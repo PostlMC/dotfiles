@@ -45,10 +45,6 @@ alias zulu="date -u '+%Y-%m-%dT%H:%M:%S%z'"
 alias zuluc="date -u '+%Y%m%dT%H%M%SZ'"
 
 
-# Python
-alias pip-up='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {} pip install -U {}'
-
-
 # cURL
 
 # curl-trace from https://github.com/wickett/dotfiles/blob/master/.curl-format

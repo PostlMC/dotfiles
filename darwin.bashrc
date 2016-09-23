@@ -19,7 +19,7 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 # Keep the .DS_Store files to yourself, Mac
 defaults write com.apple.desktopservices DSDontWriteNetworkStores true
 
-# Animations to disable (for performance reasons, and because reasons) according to 
+# Animations to disable (for performance reasons, and because reasons) according to
 # http://lifehacker.com/speed-up-an-old-mac-by-disabling-these-animations-1745282066
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 #defaults write -g QLPanelAnimationDuration -float 0
@@ -48,3 +48,4 @@ shrink-qcow2 () {
     mv ${1} ${1}.BACKUP && qemu-img convert -O qcow2 ${1}.BACKUP ${1}
 }
 
+alias pip-up='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {} pip install -U {}'
