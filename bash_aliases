@@ -45,10 +45,6 @@ alias zulu="date -u '+%Y-%m-%dT%H:%M:%S%z'"
 alias zuluc="date -u '+%Y%m%dT%H%M%SZ'"
 
 
-# Python
-alias pipup='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {} sudo -H pip install -U {}'
-
-
 # cURL
 
 # curl-trace from https://github.com/wickett/dotfiles/blob/master/.curl-format
@@ -92,7 +88,7 @@ dump-p7certs() { openssl pkcs7 -in $1 -print_certs | \
     awk '/-----BEGIN/ {out=sprintf("'${1%.*}'-%02d.cer",++count); p=1} /-----END/ {print > out; p=0} p {print > out}'; }
 
 
-# SSH 
+# SSH
 
 # Generate SSH aliases for shortnames in ~/.ssh/config (as a function so I can reload quickly)
 ssh-alias() {
@@ -113,6 +109,8 @@ root() { ssh $* -t "sudo su -"; }
 
 
 # Git
+
+alias gitv='GIT_SSH_COMMAND="ssh -v" GIT_CURL_VERBOSE=1 GIT_TRACE=1 git'
 
 # TODO: deal with spaces in directory names
 gitremotes() {
@@ -143,7 +141,7 @@ alias lookl33t='docker run -t --rm --name hollywood --net none jess/hollywood; d
 alias docker-clean='docker rm $(docker ps -q -f 'status=exited') 2>/dev/null \
     docker rmi $(docker images -q -f "dangling=true") 2>/dev/null \
     docker volume rm $(docker volume ls -q -f 'dangling=true')  2>/dev/null'
-    
+
 docker-flatten() {
     docker export $(docker run -d ${1} /bin/bash) | docker import – ${2}
 }
