@@ -179,3 +179,12 @@ alias org='whois -h whois.pir.org'
 alias edu='whois -h whois.educause.edu'
 alias cctld='whois -h whois.iana.org'
 alias bgp='whois -h riswhois.ripe.net'
+
+# Send/receive files over netcat (port hardcoded for simplicity)
+function send() {
+    tar cf - $* | nc $2 10301
+}
+
+function recv() {
+    nc -l 10301 | tar xp 2>/dev/null
+}
