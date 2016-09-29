@@ -182,9 +182,14 @@ alias bgp='whois -h riswhois.ripe.net'
 
 # Send/receive files over netcat (port hardcoded for simplicity)
 function send() {
-    tar cf - $* | nc $2 10301
+    HOST=$1; shift
+    echo "Sending to $HOST:10301..."
+    tar cf - $* | nc $HOST 10301
+    echo "Done"
 }
 
 function recv() {
+    echo "Listening on *:10301..."
     nc -l 10301 | tar xp 2>/dev/null
+    echo "Done"
 }
