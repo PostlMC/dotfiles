@@ -146,6 +146,10 @@ docker-flatten() {
     docker export $(docker run -d ${1} /bin/bash) | docker import – ${2}
 }
 
+# Found at: http://stackoverflow.com/questions/24481564/how-can-i-find-docker-image-with-specific-tag-in-docker-registry-in-docker-comma
+docker-tags() {
+    curl -s -S "https://registry.hub.docker.com/v2/repositories/$@/tags/" | jq '."results"[]["name"]' | sort
+}
 
 # tmux
 alias tmux='tmux -2'
