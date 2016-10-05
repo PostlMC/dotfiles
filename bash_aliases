@@ -188,12 +188,22 @@ alias bgp='whois -h riswhois.ripe.net'
 function send() {
     HOST=$1; shift
     echo "Sending to $HOST:10301..."
-    tar cf - $* | nc $HOST 10301
+    tar cf - $* | nc -v $HOST 10301
     echo "Done"
 }
 
 function recv() {
     echo "Listening on *:10301..."
-    nc -l 10301 | tar xp 2>/dev/null
+    nc -lv 10301 | tar xp 2>/dev/null
     echo "Done"
 }
+
+function shopt-alias() {
+    for OPT in $(shopt|awk '{print $1}'); do
+        # Don't stomp on any existing stuff
+        if ! which $OPT && ! alias $OPT 2>/dev/null && ! declare -f $OPT; then
+            alias $OPT="if shopt -q $OPT; then shopt -u $OPT; else shopt -s $OPT; fi"
+        fi
+    done
+}
+shopt-alias
