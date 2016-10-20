@@ -198,6 +198,7 @@ function recv() {
     echo "Done"
 }
 
+# Not that I use most of these much (or, ever), but it's handy to be able to flip them easily if I do
 function shopt-alias() {
     for OPT in $(shopt|awk '{print $1}'); do
         # Don't stomp on any existing stuff

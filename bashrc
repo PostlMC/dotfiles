@@ -3,6 +3,9 @@
 
 set -o vi
 
+# CPU cycles are cheap these days
+export GZIP=-9
+
 [ -d "${HOME}/bin" ] && PATH=${HOME}/bin:${PATH}
 
 # OS-specific items: anything that belongs only on the current OS
