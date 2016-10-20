@@ -60,7 +60,7 @@ alias tls1_1='openssl s_client -tls1_1 -connect'
 alias tls1='openssl s_client -tls1 -connect'
 alias dtls1='openssl s_client -dtls1 -connect'
 
-alias x509='openssl x509 -noout -text'
+alias x509='openssl x509 -noout -text -in'
 
 aesenc() {
     openssl aes-256-cbc -e -salt -in "$1" -out "$1.enc"
