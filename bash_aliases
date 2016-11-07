@@ -87,6 +87,19 @@ show-p12cert() { openssl pkcs12 -in $1 -nokeys -clcerts | openssl x509 -noout -t
 dump-p7certs() { openssl pkcs7 -in $1 -print_certs | \
     awk '/-----BEGIN/ {out=sprintf("'${1%.*}'-%02d.cer",++count); p=1} /-----END/ {print > out; p=0} p {print > out}'; }
 
+fix-cert-name() {
+    openssl x509 -in ${1} -noout -subject | \
+        awk -F= '{print $NF}' | \
+        sed '
+            s/.*/\L&/        # conver to lowercase (requires GNU sed!)
+            s/ - */-/g       # condense hyphenations
+            s/^\*/WILDCARD/  # label wildcards (I may hate this)
+            s/[)]$//         # drop trailing parens
+            s/ [(]/_/g       # condense/replace leading parens
+            s/[ :/()*]/_/g   # replace misc chars with underscore
+        '
+}
+
 
 # SSH
 
