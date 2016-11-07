@@ -201,13 +201,13 @@ alias bgp='whois -h riswhois.ripe.net'
 function send() {
     HOST=$1; shift
     echo "Sending to $HOST:10301..."
-    tar cf - $* | nc -v $HOST 10301
+    tar czf - $* | pv | nc -v $HOST 10301
     echo "Done"
 }
 
 function recv() {
     echo "Listening on *:10301..."
-    nc -lv 10301 | tar xp 2>/dev/null
+    nc -lv 10301 | pv | tar xzp 2>/dev/null
     echo "Done"
 }
 
