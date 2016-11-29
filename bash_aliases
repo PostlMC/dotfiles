@@ -175,6 +175,8 @@ alias tmuxa='tmux -2 attach -t'
 alias lso="ls -alG | \
     awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\" %0o \",k);print}'"
 
+alias find-by-mod='find . -type f -printf "%T@ %Tc %p\n" | sort -n'
+
 alias badlinks='for i in $(find . -type l); do [ -e $i ] || echo $i; done'
 
 # Assumes lynx is available!
@@ -216,7 +218,8 @@ function shopt-alias() {
     for OPT in $(shopt|awk '{print $1}'); do
         # Don't stomp on any existing stuff
         if ! which $OPT && ! alias $OPT 2>/dev/null && ! declare -f $OPT; then
-            alias $OPT="if shopt -q $OPT; then shopt -u $OPT; else shopt -s $OPT; fi"
+            alias $OPT="if shopt -q $OPT; then shopt -u $OPT && echo \"$OPT off\"; \
+                else shopt -s $OPT && echo \"$OPT on\"; fi"
         fi
     done
 }
