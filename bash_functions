@@ -93,13 +93,17 @@ ls-() {
 function send() {
     HOST=$1; shift
     echo "Sending to $HOST:10301..."
-    tar cvzf - $* | pv | nc -v $HOST 10301
+    if [ -x $(which pv) ]; then
+        tar czf - $* | pv | nc -v $HOST 10301
+    else
+        tar cvzf - $* | nc -v $HOST 10301
+    fi
     echo "Done"
 }
 
 function recv() {
     echo "Listening on *:10301..."
-    nc -lv 10301 | pv | tar xvzp 2>/dev/null
+    nc -lv 10301 | tar xvzp 2>/dev/null
     echo "Done"
 }
 
