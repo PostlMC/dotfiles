@@ -1,58 +1,42 @@
 #!/bin/bash
-#
-# Links files in this directory to the current users home directory.
-#
-# If the link already exists the file will be skipped unless the -f flag is given.
+
+# Links files in this directory to the current users home directory. If the link
+# already exists the file will be skipped unless the -f flag is given. The -p
+# flag can be used to link in an alternate location (default is $HOME).
 #
 # Original shamelessly lifted from https://gist.github.com/975295
 
-real_path () {
-    _=`pwd`
-    [ -d $DIR ] && DIR=$1
-    [ -f $DIR ] && DIR=`dirname $1`
-    cd $DIR && echo `pwd` && cd $_
-}
-
-SCRIPT_DIR=$(real_path $0)
-SCRIPT_PATH=${SCRIPT_DIR}/`basename $0`
-FORCE=0
-PREFIX=${HOME}
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd -P)"
+NO_LINK=$SCRIPT_DIR/nolink
+PREFIX=$HOME
 
 while getopts "fp:" flag
 do
     case "$flag" in
         f) FORCE=1; echo "Forcibly linking as needed" ;;
-        p) PREFIX=${OPTARG} ;;
+        p) PREFIX=$OPTARG ;;
     esac
 done
 
-for FILE_PATH in ${SCRIPT_DIR}/*
+for TARGET_FILE in $SCRIPT_DIR/*
 do
-    FILE=$(basename $FILE_PATH)
-    HOME_PATH=${PREFIX}/.${FILE}
-
-    if [[ ${FILE_PATH} = ${SCRIPT_PATH} || ${FILE} = README* || ${FILE} = gitconfig || ${FILE:0:1} = '.' ]]
+    DOT_FILE=$(basename $TARGET_FILE)
+    if ! egrep -q "^$DOT_FILE$" $NO_LINK
     then
-        echo "Ignoring ${FILE_PATH}"
-        continue
-    fi
-
-    if [[ ${FORCE} -eq 0 && -e ${HOME_PATH} ]]
-    then
-        echo "${HOME_PATH} already exists, use -f to force overwrite"
-        continue
-    fi
-
-    if [[ ${FORCE} -eq 1 ]]
-    then
-        if [[ -e ${HOME_PATH} || -L ${HOME_PATH} ]]
+        LINK=$PREFIX/.$DOT_FILE
+        if [ -e $LINK ]
         then
-            echo "Forcibly linking ${HOME_PATH} to ${FILE_PATH}"
-            rm -f ${HOME_PATH}
+            if [[ $FORCE -eq 1 ]]
+            then
+                echo "Forcibly linking $LINK to $TARGET_FILE"
+                rm -f $LINK
+            else
+                echo "$LINK already exists, use -f to force overwrite"
+                continue
+            fi
+        else
+            echo "Linking $LINK to $TARGET_FILE"
+            ln -s $TARGET_FILE $LINK
         fi
-    else
-        echo "Linking ${HOME_PATH} to ${FILE_PATH}"
     fi
-
-    ln -s ${FILE_PATH} ${HOME_PATH}
 done
