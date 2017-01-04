@@ -56,10 +56,6 @@ alias dtls1='openssl s_client -dtls1 -connect'
 alias x509='openssl x509 -noout -text -in'
 
 
-# SSH
-# For hosts where I immediately sudo su -
-
-
 # Git
 alias gitv='GIT_SSH_COMMAND="ssh -v" GIT_CURL_VERBOSE=1 GIT_TRACE=1 git'
 

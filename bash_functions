@@ -38,6 +38,7 @@ aesenc() {
 }
 
 
+# SSH
 # Generate SSH aliases for shortnames in ~/.ssh/config (as a function so I can reload quickly)
 ssh-alias() {
     if [ -s ${HOME}/.ssh/config ]
@@ -52,6 +53,7 @@ ssh-alias() {
 }
 ssh-alias
 
+# For hosts where I immediately sudo su -
 root() { ssh $* -t "sudo su -"; }
 
 
