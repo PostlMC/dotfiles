@@ -40,3 +40,7 @@ Thumbs.db
 *.sublime-project
 *.sublime-workspace
 *.swp
+
+# Ruby-isms
+.ruby-version
+
