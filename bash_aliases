@@ -89,6 +89,7 @@ alias lso="ls -alG | \
 
 alias badlinks='for i in $(find . -type l); do [ -e $i ] || echo $i; done'
 
+alias digs='dig +short'
 
 # Assumes lynx is available!
 alias html2ascii='lynx -force_html -stdin -dump -nolist'
