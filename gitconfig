@@ -1,3 +1,9 @@
+[github]
+    user = PostalMuttonchops
+
+[credential]
+    helper = osxkeychain
+
 [core]
     filemode = false
     excludesfile = ~/.gitignore
@@ -19,6 +25,8 @@
     ra = remote add
     rb = rebase
     s = status -s
+    tc = rev-list -n 1
+    sh = show
 
 [color]
     ui = true
