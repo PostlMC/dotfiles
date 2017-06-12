@@ -69,10 +69,11 @@ docker-tags() {
 
 # Git
 # TODO: deal with spaces in directory names
-gitremotes() {
+git-remotes() {
     for DIR in $(find . -type d)
     do
-        [ -d "$DIR"/.git ] && (cd "$DIR"; pwd; git remote -v; echo)
+        [ -d "$DIR"/.git ] && \
+            (cd "$DIR" && printf "${DIR}: [%s] %s\n" $(git remote -v | awk '{print $1" "$2}' | uniq))
     done
 }
 
