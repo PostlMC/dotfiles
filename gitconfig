@@ -1,9 +1,6 @@
 [github]
     user = PostalMuttonchops
 
-[credential]
-    helper = osxkeychain
-
 [core]
     filemode = false
     excludesfile = ~/.gitignore
