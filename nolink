@@ -3,7 +3,6 @@ mklinks
 nolink
 bash_aliases
 bash_functions
-bash_logout
 bash_prompt
 darwin.bashrc
 gitconfig
