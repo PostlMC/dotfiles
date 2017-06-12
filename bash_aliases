@@ -71,9 +71,9 @@ alias lookl33t='docker run -t --rm --name hollywood --net none jess/hollywood; d
 
 
 # Potentially dangerous!
-alias docker-clean='docker rm $(docker ps -q -f 'status=exited') 2>/dev/null \
+alias docker-clean='docker rm $(docker ps -q -f "status=exited") 2>/dev/null \
     docker rmi $(docker images -q -f "dangling=true") 2>/dev/null \
-    docker volume rm $(docker volume ls -q -f 'dangling=true')  2>/dev/null'
+    docker volume rm $(docker volume ls -q -f "dangling=true")  2>/dev/null'
 
 
 # tmux
