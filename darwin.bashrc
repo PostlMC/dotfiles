@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Environment
 
 # Apple needs to stop moving this ball (not even sure if these work anymore)
@@ -28,8 +30,7 @@ defaults write com.apple.dock launchanim -bool false
 defaults write com.apple.finder DisableAllAnimations -bool true
 
 
-# Aliases/Functions
-
+# Aliases
 alias brew-up='brew update && brew upgrade $(brew outdated)'
 
 alias show-files='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder'

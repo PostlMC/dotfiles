@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # For safety's sake
 alias rm='rm -I --preserve-root'
 alias mv='mv -i'

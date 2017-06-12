@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # OpenSSL
 get-chain() {
     echo | openssl s_client -connect ${1}:${2:-443} -showcerts 2>/dev/null | \
