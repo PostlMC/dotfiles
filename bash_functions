@@ -23,7 +23,7 @@ dump-p7certs() { openssl pkcs7 -in $1 -print_certs | \
     awk '/-----BEGIN/ {out=sprintf("'${1%.*}'-%02d.cer",++count); p=1} /-----END/ {print > out; p=0} p {print > out}'; }
 
 fix-cert-name() {
-    openssl x509 -in ${1} -noout -subject | \
+    openssl x509 -in "${1}" -noout -subject | \
         awk -F= '{print $NF}' | \
         sed '
             s/.*/\L&/        # conver to lowercase (requires GNU sed!)
