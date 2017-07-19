@@ -107,7 +107,7 @@ function send() {
 }
 
 function recv() {
-    echo "Listening on *:10301..."
+    echo "${hostname -f}: Listening on port 10301..."
     nc -lv 10301 | tar xvzp 2>/dev/null
     echo "Done"
 }
