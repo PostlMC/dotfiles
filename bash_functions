@@ -98,16 +98,17 @@ ls-() {
 function send() {
     HOST=$1; shift
     echo "Sending to $HOST:10301..."
-    if [ -x $(which pv) ]; then
-        tar czf - $* | pv | nc -v $HOST 10301
+    if [ $(which pv) ]; then
+        GZIP="-9" tar czf - $* | pv | nc -v $HOST 10301
     else
-        tar cvzf - $* | nc -v $HOST 10301
+        echo "pv not found, so no stats for you!"
+        GZIP="-9" tar cvzf - $* | nc -v $HOST 10301
     fi
     echo "Done"
 }
 
 function recv() {
-    echo "${hostname -f}: Listening on port 10301..."
+    echo "$(hostname -f): Listening on port 10301..."
     nc -lv 10301 | tar xvzp 2>/dev/null
     echo "Done"
 }
