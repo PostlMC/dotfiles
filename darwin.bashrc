@@ -21,6 +21,9 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 # Keep the .DS_Store files to yourself, Mac
 defaults write com.apple.desktopservices DSDontWriteNetworkStores true
 
+# Stop warning me about changing extensions
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
 # Animations to disable (for performance reasons, and because reasons) according to
 # http://lifehacker.com/speed-up-an-old-mac-by-disabling-these-animations-1745282066
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
@@ -28,6 +31,12 @@ defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 #defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 defaults write com.apple.dock launchanim -bool false
 defaults write com.apple.finder DisableAllAnimations -bool true
+
+# Set a fast keyboard repeat rate
+defaults write NSGlobalDomain KeyRepeat -int 1.5
+
+# Set a shorter Delay until key repeat
+defaults write NSGlobalDomain InitialKeyRepeat -int 12
 
 
 # Aliases
