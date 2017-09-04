@@ -40,7 +40,7 @@ if [ -x $(which dircolors) ]; then
     alias egrep='egrep --color=auto'
 fi
 
-[ -e ~/.dotfiles/bash_prompt ] && . ~/.dotfiles/bash_prompt
+[ -f ~/.dotfiles/bash_prompt ] && . ~/.dotfiles/bash_prompt
 
 [ -f ~/.dotfiles/bash_aliases ] && . ~/.dotfiles/bash_aliases
 [ -f ~/.dotfiles/bash_functions ] && . ~/.dotfiles/bash_functions
