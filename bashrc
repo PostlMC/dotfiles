@@ -40,11 +40,11 @@ if [ -x $(which dircolors) ]; then
     alias egrep='egrep --color=auto'
 fi
 
-[ -f ~/.dotfiles/bash_prompt ] && . ~/.dotfiles/bash_prompt
-
 [ -f ~/.dotfiles/bash_aliases ] && . ~/.dotfiles/bash_aliases
 [ -f ~/.dotfiles/bash_functions ] && . ~/.dotfiles/bash_functions
 
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
+
+[ -f ~/.dotfiles/bash_prompt ] && . ~/.dotfiles/bash_prompt
