@@ -65,3 +65,5 @@ alias marked="open -a /Applications/Marked\\ 2.app"
 
 alias pip-up='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {} pip install -U {}'
 alias pip3-up='pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {} pip3 install -U {}'
+
+alias tm-logs='log stream --style syslog  --predicate '"'"'senderImagePath contains[cd] "TimeMachine"'"'"' --info'
