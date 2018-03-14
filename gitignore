@@ -37,6 +37,7 @@ Thumbs.db
 *~
 
 # Editor droppings
+.idea/
 *.sublime-project
 *.sublime-workspace
 *.swp
@@ -44,3 +45,6 @@ Thumbs.db
 # Ruby-isms
 .ruby-version
 
+# Python-isms
+.ipynb_checkpoints
+__pycache__/
