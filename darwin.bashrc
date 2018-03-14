@@ -38,6 +38,9 @@ defaults write NSGlobalDomain KeyRepeat -int 1.5
 # Set a shorter Delay until key repeat
 defaults write NSGlobalDomain InitialKeyRepeat -int 12
 
+# Disable Chrome's broken swipe behavior
+defaults write com.google.Chrome.plist AppleEnableSwipeNavigateWithScrolls -bool FALSE
+
 
 # Aliases
 alias brew-up='brew update && brew upgrade $(brew outdated)'
