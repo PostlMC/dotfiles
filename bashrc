@@ -11,6 +11,7 @@ set -o vi
 
 # CPU cycles are cheap these days
 export GZIP=-9
+export BZIP=-9
 
 [ -d "${HOME}/bin" ] && PATH=${HOME}/bin:${PATH}
 
@@ -26,8 +27,8 @@ HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")
 [ -f ~/.dotfiles.local/bashrc ] && . ~/.dotfiles.local/bashrc
 
 HISTCONTROL=ignoreboth
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
 
 shopt -s histappend
 shopt -s checkwinsize
@@ -40,11 +41,11 @@ if [ -x $(which dircolors) ]; then
     alias egrep='egrep --color=auto'
 fi
 
-[ -e ~/.dotfiles/bash_prompt ] && . ~/.dotfiles/bash_prompt
-
 [ -f ~/.dotfiles/bash_aliases ] && . ~/.dotfiles/bash_aliases
 [ -f ~/.dotfiles/bash_functions ] && . ~/.dotfiles/bash_functions
 
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
+
+[ -f ~/.dotfiles/bash_prompt ] && . ~/.dotfiles/bash_prompt
