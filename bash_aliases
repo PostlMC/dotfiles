@@ -75,6 +75,11 @@ alias docker-clean='docker rm $(docker ps -q -f "status=exited") 2>/dev/null \
     docker volume rm $(docker volume ls -q -f "dangling=true")  2>/dev/null'
 
 
+# SSH
+## Useful for occasional debugging without changing configs
+alias sshpw='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no'
+
+
 # tmux
 alias tmux='tmux -2'
 alias tmuxa='tmux -2 attach -t'
