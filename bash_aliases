@@ -50,12 +50,13 @@ alias curl-trace='curl -so /dev/null -w "@${HOME}/.dotfiles/curl-format"'
 # OpenSSL
 alias sclient='echo | openssl s_client -showcerts -connect '
 alias ssl2='openssl s_client -ssl2 -connect'
-alias ssl3='openssl s_client -ssl3 -connect'
-alias tls1_2='openssl s_client -tls1_2 -connect'
-alias tls1_1='openssl s_client -tls1_1 -connect'
-alias tls1='openssl s_client -tls1 -connect'
-alias dtls1='openssl s_client -dtls1 -connect'
 alias x509='openssl x509 -noout -text -in'
+alias ssl2='echo | openssl s_client -ssl2 -connect'
+alias ssl3='echo | openssl s_client -ssl3 -connect'
+alias tls1_2='echo | openssl s_client -tls1_2 -connect'
+alias tls1_1='echo | openssl s_client -tls1_1 -connect'
+alias tls1='echo | openssl s_client -tls1 -connect'
+alias dtls1='echo | openssl s_client -dtls1 -connect'
 
 
 # Git
@@ -69,8 +70,7 @@ alias dimgsize='docker images 2>&1 | awk '\''{sum+=$(NF-1)}END{print sum,"MB"};'
 
 alias lookl33t='docker run -t --rm --name hollywood --net none jess/hollywood; docker rm -f hollywood; clear'
 
-
-# Potentially dangerous!
+## This is potentially dangerous as it deletes volumes!
 alias docker-clean='docker rm $(docker ps -q -f "status=exited") 2>/dev/null \
     docker rmi $(docker images -q -f "dangling=true") 2>/dev/null \
     docker volume rm $(docker volume ls -q -f "dangling=true")  2>/dev/null'
@@ -86,17 +86,17 @@ alias tmuxa='tmux -2 attach -t'
 alias lso="ls -alG | \
     awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\" %0o \",k);print}'"
 
-#alias find-by-mod='find . -type f -printf "%T+ %p\n" -exec sh -c "openssl md5 {} | \
-#    awk '{printf \$NF\" \" }'" \; | sort -k2.2 -V'
+# alias find-by-mod='find . -type f -printf "%T+ %p\n" -exec sh -c "openssl md5 {} | \
+#     awk '{printf \$NF\" \" }'" \; | sort -k2.2 -V'
 
 alias badlinks='for i in $(find . -type l); do [ -e $i ] || echo $i; done'
 
 alias digs='dig +short'
 
-# Assumes lynx is available!
+## Assumes lynx is available!
 alias html2ascii='lynx -force_html -stdin -dump -nolist'
-#alias myip="curl -s http://checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'"
-#alias myip='curl -s http://ifconfig.me/ip'
+# alias myip="curl -s http://checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'"
+# alias myip='curl -s http://ifconfig.me/ip'
 alias myip='curl -s http://www.gicsm.org/u/ip.php'
 
 alias sortip='sort -t . -k 1,1n -k 2,2n -k 3,3n -k 4,4n'
