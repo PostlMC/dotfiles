@@ -48,15 +48,14 @@ alias curl-trace='curl -so /dev/null -w "@${HOME}/.dotfiles/curl-format"'
 
 
 # OpenSSL
-alias sclient='echo | openssl s_client -showcerts -connect '
-alias ssl2='openssl s_client -ssl2 -connect'
-alias x509='openssl x509 -noout -text -in'
+alias sclient='echo | openssl s_client -connect'
 alias ssl2='echo | openssl s_client -ssl2 -connect'
 alias ssl3='echo | openssl s_client -ssl3 -connect'
 alias tls1_2='echo | openssl s_client -tls1_2 -connect'
 alias tls1_1='echo | openssl s_client -tls1_1 -connect'
 alias tls1='echo | openssl s_client -tls1 -connect'
 alias dtls1='echo | openssl s_client -dtls1 -connect'
+alias x509='openssl x509 -noout -text'
 
 
 # Git
