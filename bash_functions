@@ -45,7 +45,7 @@ aesenc() {
 ssh-alias() {
     if [ -s ${HOME}/.ssh/config ]
     then
-        for HOST in $(awk '/^Host /&&$2!~/\*/{for(i=1;i<=NF;++i)if(i>1&&$i!~/\./)print $i}' ${HOME}/.ssh/config)
+        for HOST in $(awk '/^Host /&&$2!~/\*/{for(i=1;i<=NF;++i)if(i>1&&$i!~/[:alnum:]\./)print $i}' ${HOME}/.ssh/config)
         do
             alias ${HOST}="ssh ${HOST}"
         done
