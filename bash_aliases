@@ -60,7 +60,7 @@ alias x509='openssl x509 -noout -text'
 
 # Git
 alias gitv='GIT_SSH_COMMAND="ssh -v" GIT_CURL_VERBOSE=1 GIT_TRACE=1 git'
-alias gitb='for B in $(git branch -a | awk '\''/remotes/ && !/HEAD|master/'\''); do git branch --track \${B#remotes/origin/} \$B ; done'
+alias gitb='for B in $(git branch -a | awk '\''/remotes/ && !/HEAD|master/'\''); do git branch --track ${B#remotes/origin/} $B ; done'
 
 # Docker
 alias dpql='docker ps -ql'
