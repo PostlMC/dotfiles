@@ -83,6 +83,7 @@ function _go_ps1() {
     PS1="\n$(~/go/bin/powerline-go \
         -modules venv,user,host,cwd,perms,git,jobs,exit \
         -priority user,host,venv,cwd,git,perms,jobs,exit \
+        -colorize-hostname \
         -cwd-mode plain \
         -newline \
         -max-width 80 $?)"
