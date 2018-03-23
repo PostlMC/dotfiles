@@ -1,7 +1,7 @@
 function _sh_ps1() {
     # Shamelessly lifted from HypriotOS on my RPi2, who lifted it from:
     #
-    # @gf3’s Sexy Bash Prompt, inspired by “Extravagant Zsh Prompt”
+    # @gf3's Sexy Bash Prompt, inspired by "Extravagant Zsh Prompt"
     # Shamelessly copied from https://github.com/gf3/dotfiles
 
     default_username='unknown'
