@@ -9,8 +9,7 @@ get-chain() {
 cert2key() {
     N=$( (openssl x509 -in $1 -noout -modulus | \
         openssl md5; openssl rsa -in $2 -noout -modulus | openssl md5) | uniq | wc -l )
-    if [ $N == 1 ]
-    then
+    if [ $N == 1 ]; then
         echo "Cert and key MATCH"
     else
         echo "Cert and key DO NOT MATCH"
@@ -72,8 +71,7 @@ docker-tags() {
 # Git
 # TODO: deal with spaces in directory names
 git-remotes() {
-    for DIR in $(find . -type d)
-    do
+    for DIR in $(find . -type d); do
         [ -d "$DIR"/.git ] && \
             (cd "$DIR" && printf "${DIR}: [%s] %s\n" $(git remote -v | awk '{print $1" "$2}' | uniq))
     done
@@ -81,8 +79,7 @@ git-remotes() {
 
 # Assumes jq is available!
 ghostars() {
-    for ORG in $@
-    do
+    for ORG in $@; do
         printf "$ORG: %s\n" $(curl -s https://api.github.com/orgs/$ORG/repos | \
         jq '[ .[] | .stargazers_count ] | add')
     done
