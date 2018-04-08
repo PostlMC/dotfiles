@@ -1,9 +1,5 @@
 #!/bin/bash
 
-export LANGUAGE=en_US.UTF-8
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -18,6 +14,10 @@ export BZIP=-9
 # OS-specific items: anything that belongs only on the current OS
 OS=$(uname|awk -F "(_|/|-)" '{print $1}'|tr "[:upper:]" "[:lower:]")
 [ -f ~/.dotfiles/$OS.bashrc ] && . ~/.dotfiles/$OS.bashrc
+
+# Distro-specific items (so I can have Pi-specific config)
+DISTRO=$([ -x /usr/bin/lsb_release ] && (/usr/bin/lsb_release -si | tr "[:upper:]" "[:lower:]"))
+[ -f ~/.dotfiles/$DISTRO.bashrc ] && . ~/.dotfiles/$DISTRO.bashrc
 
 # Host-specific items: anything that belongs only on the current host
 HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")

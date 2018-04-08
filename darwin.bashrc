@@ -1,6 +1,9 @@
 #!/bin/bash
 
 # Environment
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 # Apple needs to stop moving this ball (not even sure if these work anymore)
 export COPY_EXTENDED_ATTRIBUTES_DISABLE=true
