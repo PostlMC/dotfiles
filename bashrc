@@ -12,7 +12,7 @@ export BZIP=-9
 [ -d "${HOME}/bin" ] && PATH=${HOME}/bin:${PATH}
 
 # OS-specific items: anything that belongs only on the current OS
-OS=$(uname|awk -F "(_|/|-)" '{print $1}'|tr "[:upper:]" "[:lower:]")
+OS=$(uname|awk -F "(_|/|-)" '{print tolower($1)}')
 [ -f ~/.dotfiles/$OS.bashrc ] && . ~/.dotfiles/$OS.bashrc
 
 # Distro-specific items (so I can have Pi-specific config)
