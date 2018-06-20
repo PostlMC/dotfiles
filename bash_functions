@@ -38,18 +38,18 @@ aesenc() {
     openssl aes-256-cbc -e -salt -in "$1" -out "$1.enc"
 }
 
-
+ 
 # SSH
 # Generate SSH aliases for shortnames in ~/.ssh/config (as a function so I can reload quickly)
 ssh-alias() {
-    if [ -s ${HOME}/.ssh/config ]
-    then
-        for HOST in $(awk '/^Host /&&$2!~/\*/{for(i=1;i<=NF;++i)if(i>1&&$i!~/[:alnum:]\./)print $i}' ${HOME}/.ssh/config)
-        do
-            alias ${HOST}="ssh ${HOST}"
+    if [ -s ${HOME}/.ssh/config ]; then
+        INCS=($(awk '/^Include/{print $NF}' ${HOME}/.ssh/config))
+        for FILE in config ${INCS[@]}; do
+            for NAME in $(awk '/^Host / && $2 !~ /\*/ {for (i=1;i<=NF;++i) if (i>1 && $i !~ /\./ ) print $i}' \
+                ${HOME}/.ssh/${FILE}); do
+                alias ${NAME}="ssh ${NAME}"
+            done
         done
-    else
-        echo "No ~.ssh/config found."
     fi
 }
 ssh-alias
