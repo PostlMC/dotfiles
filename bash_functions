@@ -38,7 +38,7 @@ aesenc() {
     openssl aes-256-cbc -e -salt -in "$1" -out "$1.enc"
 }
 
- 
+
 # SSH
 # Generate SSH aliases for shortnames in ~/.ssh/config (as a function so I can reload quickly)
 ssh-alias() {
@@ -54,6 +54,7 @@ ssh-alias() {
 }
 ssh-alias
 
+
 # For hosts where I immediately sudo su -
 root() { ssh $@ -t "sudo su -"; }
 
@@ -63,7 +64,7 @@ docker-flatten() {
     docker export $(docker run -d ${1} /bin/bash) | docker import – ${2}
 }
 
-# Found at: http://stackoverflow.com/questions/24481564/how-can-i-find-docker-image-with-specific-tag-in-docker-registry-in-docker-comma
+## Found at: http://stackoverflow.com/questions/24481564/how-can-i-find-docker-image-with-specific-tag-in-docker-registry-in-docker-comma
 docker-tags() {
     curl -s -S "https://registry.hub.docker.com/v2/repositories/$@/tags/" | jq '."results"[]["name"]' | sort
 }
@@ -74,7 +75,7 @@ kctla() { kubectl $* --all-namespaces; }
 
 
 # Git
-# TODO: deal with spaces in directory names
+## TODO: deal with spaces in directory names
 git-remotes() {
     for DIR in $(find . -type d); do
         [ -d "$DIR"/.git ] && \
@@ -82,7 +83,7 @@ git-remotes() {
     done
 }
 
-# Assumes jq is available!
+## Assumes jq is available!
 ghostars() {
     for ORG in $@; do
         printf "$ORG: %s\n" $(curl -s https://api.github.com/orgs/$ORG/repos | \
@@ -96,7 +97,7 @@ ls-() {
     ls -$@
 }
 
-# Send/receive files over netcat (port hardcoded for simplicity)
+## Send/receive files over netcat (port hardcoded for simplicity)
 function send() {
     HOST=$1; shift
     echo "Sending to $HOST:10301..."
@@ -115,7 +116,7 @@ function recv() {
     echo "Done"
 }
 
-# Not that I use most of these much (or, ever), but it's handy to be able to flip them easily if I do
+## Not that I use most of these much (or, ever), but it's handy to be able to flip them easily if I do
 function shopt-alias() {
     for OPT in $(shopt|awk '{print $1}'); do
         # Don't stomp on any existing stuff
