@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function _sh_ps1() {
     # Shamelessly lifted from HypriotOS on my RPi2, who lifted it from:
     #
