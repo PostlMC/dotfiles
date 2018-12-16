@@ -41,6 +41,7 @@ Thumbs.db
 *.sublime-project
 *.sublime-workspace
 *.swp
+*.code-workspace
 
 # Ruby-isms
 .ruby-version
