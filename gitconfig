@@ -22,7 +22,7 @@
     tc = rev-list -n 1
     sh = show
     serve = daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
-    
+
 [rerere]
 	enabled = 1
 
