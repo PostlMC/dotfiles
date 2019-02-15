@@ -1,5 +1,22 @@
 #!/bin/bash
 
+# Helpers
+
+## Dug up on https://unix.stackexchange.com/questions/4965/keep-duplicates-out-of-path-on-source, where they were orginally
+## credited to fink; used to provide PATH modification idempotence needed to fix VSCode's insistance on using login shells...
+append_path() {
+    if ! eval test -z "\"\${$1##*:$2:*}\"" -o -z "\"\${$1%%*:$2}\"" -o -z "\"\${$1##$2:*}\"" -o -z "\"\${$1##$2}\"" ; then
+        eval "$1=\$$1:$2"
+    fi
+}
+
+prepend_path() {
+    if ! eval test -z "\"\${$1##*:$2:*}\"" -o -z "\"\${$1%%*:$2}\"" -o -z "\"\${$1##$2:*}\"" -o -z "\"\${$1##$2}\"" ; then
+        eval "$1=$2:\$$1"
+    fi
+}
+
+
 # OpenSSL
 get-chain() {
     echo | openssl s_client -connect ${1}:${2:-443} -showcerts 2>/dev/null | \
