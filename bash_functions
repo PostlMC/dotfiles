@@ -88,7 +88,7 @@ docker-tags() {
 
 
 # Kubernetes
-kctla() { kubectl $* --all-namespaces; }
+kubectla() { kubectl $* --all-namespaces; }
 
 
 # Git
