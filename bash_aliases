@@ -45,6 +45,7 @@ alias zuluc="date -u '+%Y%m%dT%H%M%SZ'"
 # cURL
 # curl-trace from https://github.com/wickett/dotfiles/blob/master/.curl-format
 alias curl-trace='curl -so /dev/null -w "@${HOME}/.dotfiles/curl-format"'
+alias curl-status='curl -skw "%{http_code}" -o /dev/null'
 
 
 # OpenSSL
