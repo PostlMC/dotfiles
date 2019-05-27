@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Helpers
-
 ## Dug up on https://unix.stackexchange.com/questions/4965/keep-duplicates-out-of-path-on-source, where they were orginally
 ## credited to fink; used to provide PATH modification idempotence needed to fix VSCode's insistance on using login shells...
 append_path() {
@@ -57,7 +56,7 @@ aesenc() {
 
 
 # SSH
-# Generate SSH aliases for shortnames in ~/.ssh/config (as a function so I can reload quickly)
+## Generate SSH aliases for shortnames in ~/.ssh/config (as a function so I can reload quickly)
 ssh-alias() {
     if [ -s ${HOME}/.ssh/config ]; then
         INCS=($(awk '/^Include/{print $NF}' ${HOME}/.ssh/config))
