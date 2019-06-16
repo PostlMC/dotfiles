@@ -12,11 +12,15 @@ export COPYFILE_DISABLE=true
 # Fix ls 8.25's wonderful gift from brew/coreutils
 export QUOTING_STYLE=literal
 
+# export HOMEBREW_VERBOSE=1
+# export HOMEBREW_CURL_VERBOSE=1
 # Great, now even homebrew misbehaves
-export HOMEBREW_NO_EMOJI=1
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
-#export HOMEBREW_BUILD_FROM_SOURCE=1
+export HOMEBREW_NO_COLOR=1
+export HOMEBREW_NO_EMOJI=1
+# export HOMEBREW_BUILD_FROM_SOURCE=1
+export HOMEBREW_NO_INSTALL_CLEANUP=1
 
 
 # General Mac settings
