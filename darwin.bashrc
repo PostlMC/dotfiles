@@ -70,3 +70,5 @@ alias pip-up='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {}
 alias pip3-up='pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {} pip3 install -U {}'
 
 alias tm-logs='log stream --style syslog  --predicate '"'"'senderImagePath contains[cd] "TimeMachine"'"'"' --info'
+
+[ -f $(brew --prefix)/etc/bash_completion ] && . $(brew --prefix)/etc/bash_completion
