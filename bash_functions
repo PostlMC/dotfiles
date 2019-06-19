@@ -16,7 +16,7 @@ prepend_path() {
 }
 
 # Courtesy: https://stackoverflow.com/questions/1527049/how-can-i-join-elements-of-an-array-in-bash
-function join_by() { local IFS="$1"; shift; echo "$*" }
+function join_by() { local IFS="$1"; shift; echo "$*"; }
 
 # OpenSSL
 get-chain() {
