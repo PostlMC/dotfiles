@@ -50,7 +50,7 @@ defaults write com.google.Chrome.plist AppleEnableSwipeNavigateWithScrolls -bool
 
 
 # Aliases
-alias brew-up='brew update && brew upgrade $(brew outdated)'
+alias brew-up='brew update && (brew upgrade; brew cask upgrade)'
 
 alias show-files='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder'
 alias hide-files='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder'
