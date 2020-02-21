@@ -89,12 +89,6 @@ docker-tags() {
 }
 
 
-# Kubernetes
-alias k='kubectl'
-alias kctx='kubectl config use-context'
-ka() { kubectl $* --all-namespaces; }
-kns() { kubectl config set-context --current --namespace=${1}; }
-
 # Git
 ## TODO: deal with spaces in directory names
 git-remotes() {
