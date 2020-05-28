@@ -15,8 +15,9 @@ prepend_path() {
     fi
 }
 
-# Courtesy: https://stackoverflow.com/questions/1527049/how-can-i-join-elements-of-an-array-in-bash
-function join_by() { local IFS="$1"; shift; echo "$*"; }
+## Courtesy: https://stackoverflow.com/questions/1527049/how-can-i-join-elements-of-an-array-in-bash
+join_by() { local IFS="$1"; shift; echo "$*"; }
+
 
 
 # OpenSSL
@@ -73,8 +74,7 @@ ssh-alias() {
 }
 ssh-alias
 
-
-# For hosts where I immediately sudo su -
+## For hosts where I immediately sudo su -
 root() { ssh $@ -t "sudo su -"; }
 
 
@@ -113,7 +113,7 @@ ls-() {
 }
 
 ## Send/receive files over netcat (port hardcoded for simplicity)
-function send() {
+send() {
     HOST=$1; shift
     echo "Sending to $HOST:10301..."
     if [ $(which pv) ]; then
@@ -125,14 +125,14 @@ function send() {
     echo "Done"
 }
 
-function recv() {
+recv() {
     echo "$(hostname -f): Listening on port 10301..."
     nc $@ -lv 10301 | tar xvzp 2>/dev/null
     echo "Done"
 }
 
 ## Not that I use most of these much (or, ever), but it's handy to be able to flip them easily if I do
-function shopt-alias() {
+shopt-alias() {
     for OPT in $(shopt|awk '{print $1}'); do
         # Don't stomp on any existing stuff
         if ! which $OPT && ! alias $OPT 2>/dev/null && ! declare -f $OPT; then

@@ -117,3 +117,10 @@ alias org='whois -h whois.pir.org'
 alias edu='whois -h whois.educause.edu'
 alias cctld='whois -h whois.iana.org'
 alias bgp='whois -h riswhois.ripe.net'
+
+
+alias urldecode='python -c "import sys, urllib.parse as p; \
+    print(p.unquote_plus(sys.argv[1]))"'
+
+alias urlencode='python -c "import sys, urllib.parse as p; \
+    print(p.quote_plus(sys.argv[1]))"'
