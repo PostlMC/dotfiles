@@ -2,6 +2,9 @@
     filemode = false
     excludesfile = ~/.gitignore
 
+[init]
+    defaultBranch = main
+
 [alias]
     a = add
     br = branch
