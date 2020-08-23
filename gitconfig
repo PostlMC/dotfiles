@@ -30,7 +30,7 @@
     ui = true
 
 [diffs]
-    renames = True
+    renames = true
 
 [push]
     default = simple
