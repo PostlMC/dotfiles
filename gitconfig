@@ -57,6 +57,6 @@
     smudge = git media smudge %f
 
 [filter "hawser"]
-    clean = git hawser clean %f
     required = true
+    clean = git hawser clean %f
     smudge = git hawser smudge %f
