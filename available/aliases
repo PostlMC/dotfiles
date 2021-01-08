@@ -58,7 +58,7 @@ alias tls1_1='echo | openssl s_client -tls1_1 -connect'
 alias tls1='echo | openssl s_client -tls1 -connect'
 alias dtls1='echo | openssl s_client -dtls1 -connect'
 alias x509='openssl x509 -noout -text'
-
+alias pkcs12='openssl pkcs12 -nomacver -nodes -in'
 
 # Git
 alias gitv='GIT_SSH_COMMAND="ssh -v" GIT_CURL_VERBOSE=1 GIT_TRACE=1 git'
