@@ -1,10 +1,6 @@
+available
+enabled
 README.md
+gitconfig
 mklinks
 nolink
-bash_aliases
-bash_functions
-bash_prompt
-darwin.bashrc
-gitconfig
-linux.bashrc
-raspian.bashrc

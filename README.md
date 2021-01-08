@@ -10,3 +10,7 @@ A: All the configuration files I want to keep in sync across my various systems.
 flag if provided
 
 Executing `mklinks -f ...` will overwrite any existing symlinks.
+
+## Configuration
+
+TODO: Write this part once all the pieces work

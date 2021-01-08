@@ -1,24 +1,5 @@
 #!/bin/bash
 
-# Helpers
-## Dug up on https://unix.stackexchange.com/questions/4965/keep-duplicates-out-of-path-on-source, where they were orginally
-## credited to fink; used to provide PATH modification idempotence needed to fix VSCode's insistance on using login shells...
-append_path() {
-    if ! eval test -z "\"\${$1##*:$2:*}\"" -o -z "\"\${$1%%*:$2}\"" -o -z "\"\${$1##$2:*}\"" -o -z "\"\${$1##$2}\"" ; then
-        eval "$1=\$$1:$2"
-    fi
-}
-
-prepend_path() {
-    if ! eval test -z "\"\${$1##*:$2:*}\"" -o -z "\"\${$1%%*:$2}\"" -o -z "\"\${$1##$2:*}\"" -o -z "\"\${$1##$2}\"" ; then
-        eval "$1=$2:\$$1"
-    fi
-}
-
-## Courtesy: https://stackoverflow.com/questions/1527049/how-can-i-join-elements-of-an-array-in-bash
-join_by() { local IFS="$1"; shift; echo "$*"; }
-
-
 
 # OpenSSL
 get-chain() {
@@ -130,15 +111,3 @@ recv() {
     nc $@ -lv 10301 | tar xvzp 2>/dev/null
     echo "Done"
 }
-
-## Not that I use most of these much (or, ever), but it's handy to be able to flip them easily if I do
-shopt-alias() {
-    for OPT in $(shopt|awk '{print $1}'); do
-        # Don't stomp on any existing stuff
-        if ! which $OPT && ! alias $OPT 2>/dev/null && ! declare -f $OPT; then
-            alias $OPT="if shopt -q $OPT; then shopt -u $OPT && echo \"$OPT off\"; \
-                else shopt -s $OPT && echo \"$OPT on\"; fi"
-        fi
-    done
-}
-shopt-alias

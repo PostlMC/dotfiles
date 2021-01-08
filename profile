@@ -1,9 +1,9 @@
 #!/bin/sh
 
-if [ -n "$BASH_VERSION" ]
+if [ -n "${BASH_VERSION}" ]
 then
-    if [ -f "$HOME/.bashrc" ]
+    if [ -f "${HOME}/.bashrc" ]
     then
-        . "$HOME/.bashrc"
+        . "${HOME}/.bashrc"
     fi
 fi
