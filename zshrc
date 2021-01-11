@@ -8,13 +8,13 @@ export QUOTING_STYLE=literal
 
 # Not that I use [m]any plugins
 # export ZPLUG_HOME=/usr/local/opt/zplug
-# source $ZPLUG_HOME/init.zsh
+# . $ZPLUG_HOME/init.zsh
 # zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 # plugins=(git)1
 
-source ${ZSH}/oh-my-zsh.sh
+. ${ZSH}/oh-my-zsh.sh
 
 # Symlink additional configs here to have them sourced, numbering for order
 for CFG in ${HOME}/.dotfiles/enabled/*; do
-    source ${CFG}
+    . ${CFG}
 done

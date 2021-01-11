@@ -5,5 +5,5 @@
 
 # Symlink additional configs here to have them sourced, numbering for order
 for CFG in ${HOME}/.dotfiles/enabled/*; do
-    source ${CFG}
+    . ${CFG}
 done
