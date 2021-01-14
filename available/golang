@@ -1,5 +1,7 @@
 #!/bin/bash
 
-export GOROOT=${HOME}/Golang/go
+export GOROOT=${HOME}/opt/go
 export GOPATH=${HOME}/go
+
 append_path PATH ${GOROOT}/bin:${GOPATH}/bin
+
