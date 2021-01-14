@@ -2,3 +2,4 @@
 # in it, except one file that'll make it interesting enough to git to be tracked at all
 enabled/*
 !enabled/.gitkeep
+!enabled/typical.sh
