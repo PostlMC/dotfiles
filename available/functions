@@ -98,17 +98,17 @@ send() {
     HOST=$1; shift
     echo "Sending to $HOST:10301..."
     if [ $(which pv) ]; then
-        GZIP="-9" tar czf - $@ | pv | nc -v $HOST 10301
+        tar czf - $@ | pv | nc -Nv $HOST 10301
     else
         echo "pv not found, so no stats for you!"
-        GZIP="-9" tar cvzf - $@ | nc -v $HOST 10301
+        tar cvzf - $@ | nc -Nv $HOST 10301
     fi
     echo "Done"
 }
 
 recv() {
-    echo "$(hostname -f): Listening on port 10301..."
-    nc $@ -nlv 10301 | tar xvzp 2>/dev/null
+    1>&2 echo "$(hostname -f): Listening on port 10301..."
+    nc -nlv 10301 | tar xvzp 2>/dev/null
     echo "Done"
 }
 
