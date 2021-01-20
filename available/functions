@@ -100,14 +100,14 @@ send() {
     if [ $(which pv) ]; then
         tar czf - $@ | pv | nc -Nv $HOST 10301
     else
-        echo "pv not found, so no stats for you!"
+        1>&2 echo "pv not found, so no stats for you!"
         tar cvzf - $@ | nc -Nv $HOST 10301
     fi
     echo "Done"
 }
 
 recv() {
-    1>&2 echo "$(hostname -f): Listening on port 10301..."
+    echo "$(hostname -f): Listening on port 10301..."
     nc -nlv 10301 | tar xvzp 2>/dev/null
     echo "Done"
 }
