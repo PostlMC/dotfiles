@@ -72,10 +72,10 @@ function _go_ps1() {
         -max-width 80 $?)"
 }
 
-# if [ "$TERM" != "linux" -a -x ~/go/bin/powerline-go ]; then
-#     PROMPT_COMMAND="_go_ps1; $PROMPT_COMMAND"
-# else
-#     PROMPT_COMMAND="_sh_ps1; $PROMPT_COMMAND"
-# fi
+if [ "$TERM" != "linux" -a -x ~/go/bin/powerline-go ]; then
+    PROMPT_COMMAND="_go_ps1; $PROMPT_COMMAND"
+else
+    PROMPT_COMMAND="_sh_ps1; $PROMPT_COMMAND"
+fi
 
 PROMPT_COMMAND="_sh_ps1; $PROMPT_COMMAND"
