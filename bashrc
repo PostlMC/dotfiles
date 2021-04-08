@@ -7,3 +7,4 @@
 for CFG in ${HOME}/.dotfiles/enabled/??-*; do
     . ${CFG}
 done
+source "$HOME/.cargo/env"
