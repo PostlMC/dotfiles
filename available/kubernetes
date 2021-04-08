@@ -14,8 +14,10 @@ kcfg() {
 export KUBECONFIG=$(kcfg)
 source <(kubectl completion ${SHELL##*/})
 
-# alias kctx='kubectl config use-context'
-# kns() { kubectl config set-context --current --namespace=${1}; }
+alias kctx='kubectl config use-context'
+kns() { kubectl config set-context --current --namespace=${1}; }
+
+alias ktaints='kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints'
 
 # minikube config set vm-driver hyperkit
 alias mk='KUBECONFIG=${HOME}/.kube/minikube.yml minikube'
