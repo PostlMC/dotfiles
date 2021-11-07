@@ -1,0 +1,11 @@
+#!/bin/bash
+
+alias brew='env PATH="${PATH//$(pyenv root)/shims:/}" brew'
+
+type pyenv &> /dev/null && \
+    eval "$(pyenv init -)" && \
+    eval "$(pyenv virtualenv-init -)"
+
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+
+prepend_path PATH $(pyenv root)/shims
