@@ -1,3 +1,0 @@
-#!/bin/bash
-
-[[ -x "$(which jenv)" ]] && eval "$(jenv init -)"

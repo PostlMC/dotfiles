@@ -1,0 +1,5 @@
+#!/bin/bash
+
+type jenv $> /dev/null && \
+    eval "$(jenv init -)" && \
+    prepend_path PATH ${HOME}/.jenv/bin
