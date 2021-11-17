@@ -19,6 +19,8 @@ export QUOTING_STYLE=literal
 # zstyle :compinstall filename '/Users/scott/.zshrc'
 
 # ...or do this:
+SS=/opt/homebrew/bin/starship
+
 autoload -Uz compinit
 compinit
 
@@ -28,7 +30,7 @@ type kubectl &> /dev/null && source <(kubectl completion zsh)
 source ${HOME}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-eval "$(starship init zsh)"
+eval "$(${SS} init zsh)"
 export STARSHIP_CONFIG=~/.config/starship.toml
 # END: or
 
