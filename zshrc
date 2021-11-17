@@ -2,11 +2,23 @@
 
 set -o vi
 
-unsetopt share_history
-
 # export ZSH="${HOME}/.oh-my-zsh"
 # export ZSH_THEME="dracula"
-export HIST_STAMPS="yyyy-mm-dd"
+
+export HISTSIZE=1000000
+export SAVEHIST=1000000
+
+# export HISTTIMEFORMAT="[%F %T] "
+# export HIST_STAMPS="yyyy-mm-dd"
+
+unsetopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_REDUCE_BLANKS
+unsetopt INC_APPEND_HISTORY
+setopt INC_APPEND_HISTORY_TIME
+setopt EXTENDED_HISTORY
+
 export CASE_SENSITIVE="true"
 export QUOTING_STYLE=literal
 
