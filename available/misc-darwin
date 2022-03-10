@@ -18,7 +18,7 @@ export QUOTING_STYLE=literal
 # Great, now even homebrew misbehaves
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
-export HOMEBREW_NO_COLOR=1
+# export HOMEBREW_NO_COLOR=1
 export HOMEBREW_NO_EMOJI=1
 # export HOMEBREW_BUILD_FROM_SOURCE=1
 export HOMEBREW_NO_INSTALL_CLEANUP=1
@@ -52,6 +52,7 @@ defaults write com.google.Chrome.plist AppleEnableSwipeNavigateWithScrolls -bool
 
 # Aliases
 alias brew-up='brew update && (brew upgrade; brew upgrade --cask)'
+alias brew86-up='brew86 update && (brew86 upgrade; brew86 upgrade --cask)'
 
 alias show-files='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder'
 alias hide-files='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder'

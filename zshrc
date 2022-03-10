@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+[[ -f ${HOME}/.dotfiles.local/00-environment ]] && \
+    . ${HOME}/.dotfiles.local/00-environment
+
 set -o vi
 
 # export ZSH="${HOME}/.oh-my-zsh"
@@ -31,10 +34,10 @@ export QUOTING_STYLE=literal
 # zstyle :compinstall filename '/Users/scott/.zshrc'
 
 # ...or do this:
-SS=/opt/homebrew/bin/starship
+STARSHIP=${STARSHIP:-/usr/local/bin/starship}
 
-autoload -Uz compinit
-compinit
+autoload -Uz compinit && compinit
+autoload -Uz bashcompinit && bashcompinit
 
 fpath=(${HOME}/.zsh/zsh-completions/src $fpath)
 type kubectl &> /dev/null && source <(kubectl completion zsh)
@@ -42,7 +45,9 @@ type kubectl &> /dev/null && source <(kubectl completion zsh)
 source ${HOME}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-eval "$(${SS} init zsh)"
+source /opt/homebrew/etc/bash_completion.d/az
+
+eval "$(${STARSHIP} init zsh)"
 export STARSHIP_CONFIG=~/.config/starship.toml
 # END: or
 
