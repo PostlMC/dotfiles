@@ -15,6 +15,7 @@ export SAVEHIST=1000000
 # export HIST_STAMPS="yyyy-mm-dd"
 
 unsetopt SHARE_HISTORY
+setopt HIST_IGNORE_SPACE
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_REDUCE_BLANKS
