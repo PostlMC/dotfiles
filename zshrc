@@ -3,9 +3,6 @@
 HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")
 [ -f ~/.dotfiles.local/${HOST}-bootstrap ] && . ~/.dotfiles.local/${HOST}-bootstrap
 
-# export ZSH="${HOME}/.oh-my-zsh"
-# export ZSH_THEME="dracula"
-
 export HISTSIZE=1000000
 export SAVEHIST=1000000
 
@@ -25,6 +22,9 @@ export CASE_SENSITIVE="true"
 export QUOTING_STYLE=literal
 
 # Now, either do this:
+# export ZSH="${HOME}/.oh-my-zsh"
+# export ZSH_THEME="dracula"
+
 # . ${ZSH}/oh-my-zsh.sh
 
 # plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
