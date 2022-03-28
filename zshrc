@@ -1,7 +1,7 @@
 #!/bin/zsh
 
-[[ -f ${HOME}/.dotfiles.local/00-environment ]] && \
-    . ${HOME}/.dotfiles.local/00-environment
+HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")
+[ -f ~/.dotfiles.local/${HOST}-bootstrap ] && . ~/.dotfiles.local/${HOST}-bootstrap
 
 set -o vi
 
