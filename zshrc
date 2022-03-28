@@ -3,8 +3,6 @@
 HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")
 [ -f ~/.dotfiles.local/${HOST}-bootstrap ] && . ~/.dotfiles.local/${HOST}-bootstrap
 
-set -o vi
-
 # export ZSH="${HOME}/.oh-my-zsh"
 # export ZSH_THEME="dracula"
 
