@@ -3,6 +3,7 @@
 # The K8s
 alias k='kubectl'
 ka() { kubectl "$@" --all-namespaces; }
+know() { kubectl "$@" --grace-period=0 --force; }
 kdr() { kubectl "$@" --dry-run=client -o yaml; }
 ke() { kubectl explain ${1} --recursive | less; }
 kcfg() {
