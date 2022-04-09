@@ -69,6 +69,12 @@ docker-tags() {
     curl -s -S "https://registry.hub.docker.com/v2/repositories/$@/tags/" | jq '."results"[]["name"]' | sort
 }
 
+## Check the balance of Docker's wonderful rate limit
+docker-rl() {
+    TOKEN=$(curl -s "https://auth.docker.io/token?service=registry.docker.io&scope=repository:ratelimitpreview/test:pull" | jq -r .token)
+    curl --head -H "Authorization: Bearer $TOKEN" https://registry-1.docker.io/v2/ratelimitpreview/test/manifests/latest 2>&1 | \
+        grep ratelimit-
+}
 
 # Git
 ## TODO: deal with spaces in directory names
