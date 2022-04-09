@@ -1,9 +1,8 @@
 #!/bin/zsh
 
+# I always want this, and just didn't know where else to put it
 set -o vi
 
-# export ZSH="${HOME}/.oh-my-zsh"
-# export ZSH_THEME="dracula"
 HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")
 [[ -f ${HOME}/.dotfiles.local/${HOST}-bootstrap ]] && \
     . ${HOME}/.dotfiles.local/${HOST}-bootstrap
@@ -28,6 +27,9 @@ export QUOTING_STYLE=literal
 
 # Now, either do this:
 # . ${ZSH}/oh-my-zsh.sh
+
+# export ZSH="${HOME}/.oh-my-zsh"
+# export ZSH_THEME="dracula"
 
 # plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
