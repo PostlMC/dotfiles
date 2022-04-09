@@ -3,10 +3,12 @@
 # The above shebang is just here as a hint for VSCode, etc. in all these files.  Most
 # files here are actually intended to work in several shells. (e.g., bash, zsh)
 
-# Dug up on https://unix.stackexchange.com/questions/4965/keep-duplicates-out-of-path-on-source,
-# where they were orginally credited to fink; used to provide PATH modification
-# idempotence needed to fix VSCode's insistance on using login shells...
+# NOTE: This file doesn't actually modify the environment aside from defining a few
+# functions that are used by subsequently called files to modify the environment.
 
+# Dug up on https://unix.stackexchange.com/questions/4965/keep-duplicates-out-of-path-on-source,
+# where they were orginally credited to fink; primarily used to provide PATH modification
+# idempotence needed to fix things like VSCode's insistance on using login shells...
 append_path() {
     if ! eval test -z "\"\${$1##*:$2:*}\"" -o -z "\"\${$1%%*:$2}\"" -o -z "\"\${$1##$2:*}\"" -o -z "\"\${$1##$2}\"" ; then
         eval "$1=\$$1:$2"
