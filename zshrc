@@ -1,12 +1,12 @@
 #!/bin/zsh
 
-[[ -f ${HOME}/.dotfiles.local/00-environment ]] && \
-    . ${HOME}/.dotfiles.local/00-environment
-
 set -o vi
 
 # export ZSH="${HOME}/.oh-my-zsh"
 # export ZSH_THEME="dracula"
+HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")
+[[ -f ${HOME}/.dotfiles.local/${HOST}-bootstrap ]] && \
+    . ${HOME}/.dotfiles.local/${HOST}-bootstrap
 
 export HISTSIZE=1000000
 export SAVEHIST=1000000
