@@ -13,6 +13,7 @@ export COPYFILE_DISABLE=true
 # Fix ls 8.25's wonderful gift from brew/coreutils
 export QUOTING_STYLE=literal
 
+# Face it, homebrew will be installed despite it's transgressions
 # export HOMEBREW_VERBOSE=1
 # export HOMEBREW_CURL_VERBOSE=1
 # Great, now even homebrew misbehaves
@@ -75,6 +76,8 @@ alias marked="open -a /Applications/Marked\\ 2.app"
 alias pip-up='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {} pip install -U {}'
 alias pip3-up='pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {} pip3 install -U {}'
 
+# alias tm-wtf='sudo log stream --style syslog --predicate '\''processImagePath contains "backupd" and subsystem beginswith "com.apple.TimeMachine"'\'' --info'
+alias tm-wtf='sudo log stream --style syslog --predicate '\''processImagePath contains "backupd"'\'' --info'
 alias tm-logs='log stream --style syslog  --predicate '"'"'senderImagePath contains[cd] "TimeMachine"'"'"' --info'
 
 [ -f $(brew --prefix)/etc/bash_completion ] && . $(brew --prefix)/etc/bash_completion
