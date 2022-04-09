@@ -4,7 +4,7 @@ type pyenv &> /dev/null && \
     eval "$(pyenv init -)" && \
     eval "$(pyenv virtualenv-init -)"
 
-alias brew='env PATH="${PATH//$(pyenv root)/shims:/}" ${HOME}/opt/homebrew/bin/brew'
+alias brew='env PATH="${PATH//$(pyenv root)/shims:/}" /opt/homebrew/bin/brew'
 # alias brew86='env PATH="${PATH//$(pyenv root)/shims:/}" arch -x86_64 /usr/local/bin/brew'
 
 prepend_path PATH $(pyenv root)/shims
