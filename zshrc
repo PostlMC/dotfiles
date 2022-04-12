@@ -3,6 +3,7 @@
 # I always want this, and just didn't know where else to put it
 set -o vi
 
+# Load a host-specific config (if any) to establish locations of a few key binaries
 HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")
 [[ -f ${HOME}/.dotfiles.local/${HOST}-bootstrap ]] && \
     . ${HOME}/.dotfiles.local/${HOST}-bootstrap
@@ -25,7 +26,12 @@ setopt EXTENDED_HISTORY
 export CASE_SENSITIVE="true"
 export QUOTING_STYLE=literal
 
-# Now, either do this:
+# Symlink additional configs here to have them sourced, numbering for order
+for CFG in ${HOME}/.dotfiles/enabled/??-*; do
+    . ${CFG}
+done
+
+# Now, for the pretty stuff, either do this:
 # export ZSH="${HOME}/.oh-my-zsh"
 # export ZSH_THEME="dracula"
 
@@ -45,20 +51,13 @@ STARSHIP=${STARSHIP:-/usr/local/bin/starship}
 autoload -Uz compinit && compinit
 autoload -Uz bashcompinit && bashcompinit
 
-# >>> Turns out it's important to set up PATH _before_ completions load
-# Symlink additional configs here to have them sourced, numbering for order
-for CFG in ${HOME}/.dotfiles/enabled/??-*; do
-    . ${CFG}
-done
-# >>> END: PATH set up
-
 fpath=(${HOME}/.zsh/zsh-completions/src $fpath)
 
 source ${HOME}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 type kubectl &> /dev/null && source <(kubectl completion zsh)
-source ${HOME}/opt/homebrew/etc/bash_completion.d/az
+source ${HOMEBREW_PREFIX}/etc/bash_completion.d/az
 
 eval "$(${STARSHIP} init zsh)"
 export STARSHIP_CONFIG=${HOME}/.config/starship.toml
