@@ -13,7 +13,7 @@ kcfg() {
     )
 }
 export KUBECONFIG=$(kcfg)
-source <(kubectl completion ${SHELL##*/})
+source <(kubectl completion ${SHELL##*/} 2>&1 > /dev/null)
 
 alias kctx='kubectl config use-context'
 kns() { kubectl config set-context --current --namespace=${1}; }

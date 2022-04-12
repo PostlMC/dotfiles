@@ -80,4 +80,4 @@ alias pip3-up='pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I 
 alias tm-wtf='sudo log stream --style syslog --predicate '\''processImagePath contains "backupd"'\'' --info'
 alias tm-logs='log stream --style syslog  --predicate '"'"'senderImagePath contains[cd] "TimeMachine"'"'"' --info'
 
-[ -f $(brew --prefix)/etc/bash_completion ] && . $(brew --prefix)/etc/bash_completion
+# [ -f $(brew --prefix)/etc/bash_completion ] && . $(brew --prefix)/etc/bash_completion
