@@ -109,8 +109,7 @@ alias digs='dig +short'
 ## Assumes lynx is available!
 alias html2ascii='lynx -force_html -stdin -dump -nolist'
 # alias myip="curl -s http://checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'"
-# alias myip='curl -s http://ifconfig.me/ip'
-alias myip='curl -s http://www.gicsm.org/u/ip.php'
+alias myip='curl -s http://ifconfig.me/ip'
 
 alias sortip='sort -t . -k 1,1n -k 2,2n -k 3,3n -k 4,4n'
 
