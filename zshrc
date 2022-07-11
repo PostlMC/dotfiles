@@ -4,7 +4,7 @@
 set -o vi
 
 # Load a host-specific config (if any) to establish locations of a few key binaries
-HOST=$(hostname -s|tr "[:upper:]" "[:lower:]")
+HOST=$(hostname -s|sed 's/-.gbe$//g'|tr "[:upper:]" "[:lower:]")
 [[ -f ${HOME}/.dotfiles.local/${HOST}-bootstrap ]] && \
     . ${HOME}/.dotfiles.local/${HOST}-bootstrap
 
