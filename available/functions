@@ -135,3 +135,19 @@ recv() {
 
 #     LC_COLLATE=$old_lc_collate
 # }
+
+# randh() {
+#     head -c$(( ${1:-16} / 2 )) < /dev/urandom | xxd -p
+# }
+
+randh() {
+    LC_ALL=C tr -dc 'a-f0-9' < /dev/urandom | head -c${1:-16}
+}
+
+randa() {
+    LC_ALL=C tr -dc '[:alnum:]' < /dev/urandom | head -c${1:-16}
+}
+
+randg() {
+    LC_ALL=C tr -dc '[:graph:]' < /dev/urandom | head -c${1:-16}
+}
