@@ -55,6 +55,7 @@ fpath=(${HOME}/.zsh/zsh-completions/src $fpath)
 
 source ${HOME}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ${HOME}/.zsh/zsh-hist/zsh-hist.plugin.zsh
 
 type kubectl &> /dev/null && source <(kubectl completion zsh)
 source ${HOMEBREW_PREFIX}/etc/bash_completion.d/az
@@ -62,3 +63,7 @@ source ${HOMEBREW_PREFIX}/etc/bash_completion.d/az
 eval "$(${STARSHIP} init zsh)"
 export STARSHIP_CONFIG=${HOME}/.config/starship.toml
 # END: or
+
+# Ref: https://zsh.sourceforge.io/Doc/Release/User-Contributions.html#Accessing-On_002dLine-Help
+unalias run-help
+autoload run-help
