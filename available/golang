@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# export GOROOT=/usr/local/go
 export GOPATH=${HOME}/Go
+export GOROOT=${HOME}/opt/go
 
-# append_path PATH ${GOROOT}/bin:${GOPATH}/bin
-prepend_path PATH ${GOPATH}/bin
+prepend_path PATH ${GOPATH}/bin:${GOROOT}/bin
