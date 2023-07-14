@@ -2,10 +2,16 @@
 
 # The K8s
 alias k='kubectl'
+alias kv='kubectl -v=7'
+alias kv8='kubectl -v=8'
+
+alias ktaints='kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints'
+
 ka() { kubectl "$@" --all-namespaces; }
 know() { kubectl "$@" --grace-period=0 --force; }
 kdr() { kubectl "$@" --dry-run=client -o yaml; }
 ke() { kubectl explain ${1} --recursive | less; }
+
 kcfg() {
     [ -d ~/.kube ] && [ -s ~/.kube/current-context ] && \
     echo ~/.kube/current-context:$(join_by : $(find ~/.kube -maxdepth 1 -type f \
@@ -13,16 +19,16 @@ kcfg() {
     )
 }
 export KUBECONFIG=$(kcfg)
+
 source <(kubectl completion ${SHELL##*/} 2>&1 > /dev/null)
 
 alias kctx='kubectl config use-context'
 kns() { kubectl config set-context --current --namespace=${1}; }
 
+alias kimg="kubectl get pods --all-namespaces -o json | jq -r '.items[].spec.containers[].image' | sort | uniq -c"
 alias ktaints='kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints'
 
 type minikube &> /dev/null && \
     # minikube config set vm-driver hyperkit && \
     alias mk='KUBECONFIG=${HOME}/.kube/minikube.yml minikube' && \
     export MINIKUBE_IN_STYLE=false
-
-# export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
