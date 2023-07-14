@@ -39,10 +39,6 @@ alias reset-launchpad='defaults -currentHost write com.apple.dock ResetLaunchPad
 
 alias flush-dns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
 
-shrink-qcow2 () {
-    mv ${1} ${1}.BACKUP && qemu-img convert -O qcow2 ${1}.BACKUP ${1}
-}
-
 alias marked="open -a /Applications/Marked\\ 2.app"
 
 alias pip-up='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {} pip install -U {}'
