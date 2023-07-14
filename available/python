@@ -1,0 +1,18 @@
+#!/bin/bash
+
+type pyenv &> /dev/null && \
+    eval "$(pyenv init -)" && \
+    eval "$(pyenv virtualenv-init -)" && \
+    prepend_path PATH $(pyenv root)/shims && \
+    alias brew='env PATH="${PATH//$(pyenv root)/shims:/}" ${HOMEBREW_PREFIX}/bin/brew' # && \
+    # alias brew86='env PATH="${PATH//$(pyenv root)/shims:/}" arch -x86_64 /usr/local/bin/brew'
+
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+
+type pip &> /dev/null && \
+    alias pip='python -m pip' && \
+    alias pip-up='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {} pip install -U {}' && \
+
+type pip3 &> /dev/null && \
+    alias pip3='python3 -m pip' && \
+    alias pip3-up='pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -I {} pip3 install -U {}'
