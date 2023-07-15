@@ -87,6 +87,16 @@ git-remotes() {
     done
 }
 
+getgit() {
+    (cd ${D}; if [[ -d .git ]]; then
+        printf "${PWD}, %s\n" $(git config --get remote.origin.url)
+    else
+        for D in $(find . -maxdepth 1 -mindepth 1 -type d -regex '.*/[^.-].*' -printf '%f\n'); do
+            getgit ${D}
+        done
+    fi)
+}
+
 ## Assumes jq is available!
 ghostars() {
     for ORG in $@; do
