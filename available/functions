@@ -74,6 +74,10 @@ docker-rl() {
         grep ratelimit-
 }
 
+# shrink-qcow2 () {
+#     mv ${1} ${1}.BACKUP && qemu-img convert -O qcow2 ${1}.BACKUP ${1}
+# }
+
 # Git
 ## TODO: deal with spaces in directory names
 git-remotes() {
