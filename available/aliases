@@ -17,12 +17,10 @@ alias chown='chown --preserve-root'
 alias chmod='chmod --preserve-root'
 alias chgrp='chgrp --preserve-root'
 
-
 # Old habits
 alias ll='ls -l'
 alias la='ls -la'
 alias l='ls -CF'
-
 
 # [Way too] Common typos
 alias ls-la='ls -la'
@@ -32,14 +30,12 @@ alias cd..='cd ..'
 alias rm-f='rm -f'
 alias rm-rf='rm -rf'
 
-
 # Laziness enablement
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ..3='cd ../../..'
 alias ..4='cd ../../../..'
 alias ..5='cd ../../../../..'
-
 
 # ISO 8601 is your friend
 # Local (server) time
@@ -49,12 +45,10 @@ alias nowc="date '+%Y%m%dT%H%M%S%Z'"
 alias zulu="date -u '+%Y-%m-%dT%H:%M:%S%z'"
 alias zuluc="date -u '+%Y%m%dT%H%M%SZ'"
 
-
 # cURL
 # curl-trace from https://github.com/wickett/dotfiles/blob/master/.curl-format
 alias curl-trace='curl -so /dev/null -w "@${HOME}/.dotfiles/curl-format"'
 alias curl-status='curl -skw "%{http_code}" -o /dev/null'
-
 
 # OpenSSL
 alias sclient='echo | openssl s_client -connect'
@@ -83,16 +77,15 @@ alias docker-clean='docker rm $(docker ps -q -f "status=exited") 2>/dev/null \
     docker rmi $(docker images -q -f "dangling=true") 2>/dev/null \
     docker volume rm $(docker volume ls -q -f "dangling=true")  2>/dev/null'
 
+alias restatus='startstat(){ systemctl start \$*; systemctl status \$* }'
 
 # SSH
 ## Useful for occasional debugging without changing configs
 alias sshpw='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no'
 
-
 # tmux
 alias tmux='tmux -2'
 alias tmuxa='tmux -2 attach -t'
-
 
 # Misc
 ## ls with numeric (octal) permissions at the start of each line
@@ -113,7 +106,6 @@ alias myip='curl -s http://ifconfig.me/ip'
 
 alias sortip='sort -t . -k 1,1n -k 2,2n -k 3,3n -k 4,4n'
 
-
 # I do not know why I keep these around
 alias apnic='whois -h whois.apnic.net'
 alias ripe='whois -h whois.ripe.net'
@@ -124,7 +116,6 @@ alias org='whois -h whois.pir.org'
 alias edu='whois -h whois.educause.edu'
 alias cctld='whois -h whois.iana.org'
 alias bgp='whois -h riswhois.ripe.net'
-
 
 # alias urldecode='python -c "import sys, urllib.parse as p; \
 #     print(p.unquote_plus(sys.argv[1]))"'

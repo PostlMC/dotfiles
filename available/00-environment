@@ -3,8 +3,8 @@
 # The above shebang is just here as a hint for VSCode, etc. in all these files.  Most
 # files here are actually intended to work in several shells. (e.g., bash, zsh)
 
-# NOTE: This file doesn't actually modify the environment aside from defining a few
-# functions that are used by subsequently called files to modify the environment.
+# NOTE: This file only defines a few functions that are used by subsequently called
+# files to actually modify the environment.
 
 # Dug up on https://unix.stackexchange.com/questions/4965/keep-duplicates-out-of-path-on-source,
 # where they were orginally credited to fink; primarily used to provide PATH modification
