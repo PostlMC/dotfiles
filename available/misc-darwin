@@ -24,8 +24,10 @@ export HOMEBREW_NO_EMOJI=1
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 
 # Aliases
-alias brew-up='brew update && (brew upgrade; brew upgrade --cask)'
-alias brew86-up='brew86 update && (brew86 upgrade; brew86 upgrade --cask)'
+alias brew-up='${HOMEBREW_PREFIX}/bin/brew update && \
+    (${HOMEBREW_PREFIX}/bin/brew upgrade; ${HOMEBREW_PREFIX}/bin/brew upgrade --cask)'
+alias brew86-up='${HOMEBREW86_PREFIX}/bin/brew86 update && \
+    (${HOMEBREW86_PREFIX}/bin/brew86 upgrade; ${HOMEBREW86_PREFIX}/bin/brew86 upgrade --cask)'
 
 alias show-files='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder'
 alias hide-files='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder'
