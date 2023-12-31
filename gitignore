@@ -50,3 +50,7 @@ Thumbs.db
 # Python-isms
 .ipynb_checkpoints
 __pycache__/
+
+# Direnv files
+.direnv
+.envrc
