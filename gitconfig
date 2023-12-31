@@ -1,46 +1,48 @@
 [core]
-    filemode = false
-    excludesfile = ~/.gitignore
+filemode = false
+excludesfile = ~/.gitignore
 
 [init]
-    defaultBranch = main
+defaultBranch = main
 
 [pager]
-	branch = false
+branch = false
 
 [alias]
-    a = add
-    br = branch
-    c = commit -m
-    co = checkout
-    d = diff
-    f = fetch --all
-    m = merge
-    p = pull --ff-only
-    ps = push
-    r = remote
-    rv = remote -v
-    ra = remote add
-    rb = rebase
-    s = status -s
-    tc = rev-list -n 1
-    sh = show
-    serve = daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
+a = add
+br = branch
+c = commit -m
+co = checkout
+d = diff
+f = fetch --all
+l = log --graph --pretty=format:'%C(yellow)%h%Creset -%Cred%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
+ll = log --graph --pretty=format:'%C(yellow)%h%Creset -%Cred%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+m = merge
+p = pull --ff-only
+ps = push
+r = remote
+rv = remote -v
+ra = remote add
+rb = rebase
+s = status -s
+tc = rev-list -n 1
+sh = show
+serve = daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
 
 [rerere]
-	enabled = 1
+enabled = 1
 
 [color]
-    ui = true
+ui = true
 
 [diffs]
-    renames = true
+renames = true
 
 [push]
-    default = simple
+default = simple
 
 [pull]
-	rebase = false
+rebase = false
 
 # [url "git@github.com:"]
 #     insteadOf = "gh:"
@@ -59,11 +61,11 @@
 #     insteadOf = "bitbucket:"
 
 [filter "media"]
-    required = true
-    clean = git media clean %f
-    smudge = git media smudge %f
+required = true
+clean = git media clean %f
+smudge = git media smudge %f
 
 [filter "hawser"]
-    required = true
-    clean = git hawser clean %f
-    smudge = git hawser smudge %f
+required = true
+clean = git hawser clean %f
+smudge = git hawser smudge %f
