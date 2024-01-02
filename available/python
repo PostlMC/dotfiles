@@ -1,18 +1,29 @@
 #!/bin/bash
 
-type pyenv &> /dev/null && \
-    eval "$(pyenv init -)" && \
-    eval "$(pyenv virtualenv-init -)" && \
-    prepend_path PATH $(pyenv root)/shims && \
-    alias brew='env PATH="${PATH//$(pyenv root)/shims:/}" ${HOMEBREW_PREFIX}/bin/brew' # && \
-    # alias brew86='env PATH="${PATH//$(pyenv root)/shims:/}" arch -x86_64 /usr/local/bin/brew'
+whence -w pip &>/dev/null &&
+    alias pip='python -m pip' && {
+    alias pip-up='pip install -U $(pip freeze --local | awk -F "(==|@)" '\''!/(-e|^#)/{print $1}'\'') && asdf reshim python'
+    alias gpip-up='gpip install -U $(gpip freeze --local | awk -F "(==|@)" '\''!/(-e|^#)/{print $1}'\'') && asdf reshim python'
+}
 
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+whence -w pip3 &>/dev/null &&
+    alias pip3='python3 -m pip' && {
+    alias pip3-up='pip install -U \$(pip3 freeze --local | awk -F "(==|@)" '\''!/(-e|^#)/{print $1}'\'') && asdf reshim python'
+    alias gpip3-up='gpip install -U \$(gpip3 freeze --local | awk -F "(==|@)" '\''!/(-e|^#)/{print $1}'\'') && asdf reshim python'
+}
 
-type pip &> /dev/null && \
-    alias pip='python -m pip' && \
-    alias pip-up="pip install -U \$(pip freeze --local | awk -F \"(==|@)\" '\!/-e/{print \$1}')"
+gpip() { PIP_REQUIRE_VIRTUALENV=false pip "$@" }
+gpip3() { PIP_REQUIRE_VIRTUALENV=false pip3 "$@" }
 
-type pip3 &> /dev/null && \
-    alias pip3='python3 -m pip' && \
-    alias pip3-up="pip install -U \$(pip3 freeze --local | awk -F \"(==|@)\" '\!/-e/{print \$1}')"
+export PIP_REQUIRE_VIRTUALENV=true
+
+# export WORKON_HOME=$HOME/.virtualenvs
+# . $(asdf where python)/bin/virtualenvwrapper.sh
+
+# whence -w pyenv &>/dev/null &&
+#     eval "$(pyenv init -)" &&
+#     eval "$(pyenv virtualenv-init -)" &&
+#     prepend_path PATH $(pyenv root)/shims &&
+#     alias brew='env PATH="${PATH//$(pyenv root)/shims:/}" ${HOMEBREW_PREFIX}/bin/brew' # &&
+#     export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+# alias brew86='env PATH="${PATH//$(pyenv root)/shims:/}" arch -x86_64 /usr/local/bin/brew'

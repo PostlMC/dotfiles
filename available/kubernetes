@@ -29,8 +29,9 @@ kns() { kubectl config set-context --current --namespace=${1}; }
 
 alias kimg="kubectl get pods --all-namespaces -o json | jq -r '.items[].spec.containers[].image' | sort | uniq -c"
 alias ktaints='kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints'
+alias kans='kubectl get --all-namespaces $(python -c '\''import sys; print(" ".join(sys.argv[1:])'\'') $(kubectl api-resources|awk '\''$4~/true/{printf "%s ", $1}'\'')'
 
-type minikube &>/dev/null &&
-    # minikube config set vm-driver hyperkit && \
-    alias mk='KUBECONFIG=${HOME}/.kube/minikube.yml minikube' &&
-    export MINIKUBE_IN_STYLE=false
+# whence -w minikube &>/dev/null &&
+#     # minikube config set vm-driver hyperkit && \
+#     alias mk='KUBECONFIG=${HOME}/.kube/minikube.yml minikube' &&
+#     export MINIKUBE_IN_STYLE=false
