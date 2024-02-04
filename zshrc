@@ -68,7 +68,8 @@ complete -o nospace -C /Users/scott/.asdf/shims/terraform terraform
 source ${HOME}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ${HOME}/.zsh/zsh-hist/zsh-hist.plugin.zsh
-source "${HOME}/.config/asdf-direnv/zshrc"
+source ${HOME}/.config/asdf-direnv/zshrc
+source ${HOME}/.fzf.zsh
 
 eval "$(${STARSHIP} init zsh)"
 export STARSHIP_CONFIG=${HOME}/.config/starship/starship.toml
