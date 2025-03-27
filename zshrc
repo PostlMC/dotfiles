@@ -4,8 +4,8 @@
 set -o vi
 
 # Load a host-specific config (if any) to establish locations of a few key binaries
-HOST=$(hostname -s|sed 's/-.gbe$//g'|tr "[:upper:]" "[:lower:]")
-[[ -f ${HOME}/.dotfiles.local/${HOST}-bootstrap ]] && \
+HOST=$(hostname -s | sed 's/-.gbe$//g' | tr "[:upper:]" "[:lower:]")
+[[ -r ${HOME}/.dotfiles.local/${HOST}-bootstrap ]] &&
     . ${HOME}/.dotfiles.local/${HOST}-bootstrap
 
 export HISTSIZE=1000000
@@ -27,6 +27,7 @@ export CASE_SENSITIVE="true"
 export QUOTING_STYLE=literal
 
 # Symlink additional configs here to have them sourced, numbering for order
+# (fpath completions should get run here)
 for CFG in ${HOME}/.dotfiles/enabled/??-*; do
     . ${CFG}
 done
@@ -48,20 +49,30 @@ done
 # ...or do this:
 STARSHIP=${STARSHIP:-/usr/local/bin/starship}
 
-autoload -Uz compinit && compinit
-autoload -Uz bashcompinit && bashcompinit
+# see: https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+# fpath=(${HOME}/.zsh/zsh-completions/src $fpath)
 
-fpath=(${HOME}/.zsh/zsh-completions/src $fpath)
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+# autoload -Uz compinit && compinit
+# autoload -Uz bashcompinit && bashcompinit
+
+# (post compinit completions now can be run)
+whence -w kubectl &>/dev/null &&
+    source <(kubectl completion zsh)
+
+complete -o nospace -C /Users/scott/.asdf/shims/terraform terraform
+
+# source ${HOMEBREW_PREFIX}/etc/bash_completion.d/az
 
 source ${HOME}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ${HOME}/.zsh/zsh-hist/zsh-hist.plugin.zsh
-
-type kubectl &> /dev/null && source <(kubectl completion zsh)
-source ${HOMEBREW_PREFIX}/etc/bash_completion.d/az
+source ${HOME}/.config/asdf-direnv/zshrc
+source ${HOME}/.fzf.zsh
 
 eval "$(${STARSHIP} init zsh)"
-export STARSHIP_CONFIG=${HOME}/.config/starship.toml
+export STARSHIP_CONFIG=${HOME}/.config/starship/starship.toml
 # END: or
 
 # Ref: https://zsh.sourceforge.io/Doc/Release/User-Contributions.html#Accessing-On_002dLine-Help

@@ -1,4 +1,8 @@
 #!/bin/bash
 
-type terraform >/dev/null 2>&1 && alias tf='terraform'
-type terragrunt >/dev/null 2>&1 && alias tg='terragrunt'
+type terraform &>/dev/null && {
+    alias tf='terraform'
+    alias tfv='TF_LOG=INFO terraform'
+    alias tfvv='TF_LOG=TRACE terraform'
+}
+type terragrunt &>/dev/null && alias tg='terragrunt'
