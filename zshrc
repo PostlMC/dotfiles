@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-# I always want this, and just didn't know where else to put it
+# I always want this and just didn't know where else to put it
 set -o vi
 
 # Load a host-specific config (if any) to establish locations of a few key binaries
@@ -52,7 +52,7 @@ done
 # zstyle :compinstall filename '/Users/scott/.zshrc'
 
 # ...or do this:
-STARSHIP=${STARSHIP:-/usr/local/bin/starship}
+STARSHIP=${STARSHIP:-${HOMEBREW_PREFIX}/bin/starship}
 
 # see: https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
 # fpath=(${HOME}/.zsh/zsh-completions/src $fpath)
