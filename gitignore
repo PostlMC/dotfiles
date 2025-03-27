@@ -43,6 +43,8 @@ Thumbs.db
 *.swp
 *.code-workspace
 .vscode/
+.cursorrules
+.copilot_instructions.md
 
 # Ruby-isms
 .ruby-version
@@ -50,3 +52,8 @@ Thumbs.db
 # Python-isms
 .ipynb_checkpoints
 __pycache__/
+.venv
+
+# Direnv files
+.direnv
+.envrc
