@@ -1,8 +1,8 @@
 #!/bin/bash
 
-type terraform &>/dev/null && {
+whence -w terraform &>/dev/null && {
     alias tf='terraform'
     alias tfv='TF_LOG=INFO terraform'
     alias tfvv='TF_LOG=TRACE terraform'
 }
-type terragrunt &>/dev/null && alias tg='terragrunt'
+whence -w terragrunt &>/dev/null && alias tg='terragrunt'
