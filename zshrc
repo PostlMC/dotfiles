@@ -8,16 +8,21 @@ HOST=$(hostname -s | sed 's/-.gbe$//g' | tr "[:upper:]" "[:lower:]")
 [[ -r ${HOME}/.dotfiles.local/${HOST}-bootstrap ]] &&
     . ${HOME}/.dotfiles.local/${HOST}-bootstrap
 
+eval $(/usr/libexec/path_helper -s)
+
+# export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000
 export SAVEHIST=1000000
-
 # export HISTTIMEFORMAT="[%F %T] "
 # export HIST_STAMPS="yyyy-mm-dd"
 
+# Ref: https://zsh.sourceforge.io/Doc/Release/Options.html#Options
 unsetopt SHARE_HISTORY
 setopt HIST_IGNORE_SPACE
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_SAVE_NO_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_REDUCE_BLANKS
 unsetopt INC_APPEND_HISTORY
 setopt INC_APPEND_HISTORY_TIME
@@ -60,10 +65,12 @@ autoload -U +X bashcompinit && bashcompinit
 # (post compinit completions now can be run)
 whence -w kubectl &>/dev/null &&
     source <(kubectl completion zsh)
+whence -w kubelogin &>/dev/null &&
+    source <(kubelogin completion zsh)
 
 complete -o nospace -C /Users/scott/.asdf/shims/terraform terraform
 
-# source ${HOMEBREW_PREFIX}/etc/bash_completion.d/az
+source ${HOMEBREW_PREFIX}/etc/bash_completion.d/az
 
 source ${HOME}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
