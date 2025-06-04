@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# For the uv default installed with: `uv python install 3.12 --default --preview`
 prepend_path PATH ${HOME}/.local/bin
 
 # whence -w pip &>/dev/null && {
