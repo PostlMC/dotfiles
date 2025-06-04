@@ -51,15 +51,16 @@ alias curl-trace='curl -so /dev/null -w "@${HOME}/.dotfiles/curl-format"'
 alias curl-status='curl -skw "%{http_code}" -o /dev/null'
 
 # OpenSSL
+alias rsa='openssl rsa -noout -text'
+alias dtls1='echo | openssl s_client -dtls1 -connect'
+alias pkcs12='openssl pkcs12 -nomacver -nodes'
 alias sclient='echo | openssl s_client -connect'
 alias ssl2='echo | openssl s_client -ssl2 -connect'
 alias ssl3='echo | openssl s_client -ssl3 -connect'
-alias tls1_2='echo | openssl s_client -tls1_2 -connect'
 alias tls1_1='echo | openssl s_client -tls1_1 -connect'
+alias tls1_2='echo | openssl s_client -tls1_2 -connect'
 alias tls1='echo | openssl s_client -tls1 -connect'
-alias dtls1='echo | openssl s_client -dtls1 -connect'
 alias x509='openssl x509 -noout -text'
-alias pkcs12='openssl pkcs12 -nomacver -nodes -in'
 
 # Git
 alias gitv='GIT_SSH_COMMAND="ssh -v" GIT_CURL_VERBOSE=1 GIT_TRACE=1 git'
