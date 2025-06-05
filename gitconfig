@@ -44,22 +44,6 @@ default = simple
 [pull]
 rebase = false
 
-# [url "git@github.com:"]
-#     insteadOf = "gh:"
-#     pushInsteadOf = "github:"
-#     pushInsteadOf = "git://github.com/"
-
-# [url "git://github.com/"]
-#     insteadOf = "github:"
-
-# [url "git@bitbucket.org:"]
-#     insteadOf = "bb:"
-#     pushInsteadOf = "bitbucket:"
-#     pushInsteadOf = "git://bitbucket.org/"
-
-# [url "git://bitbucket.org/"]
-#     insteadOf = "bitbucket:"
-
 [filter "media"]
 required = true
 clean = git media clean %f
@@ -69,3 +53,9 @@ smudge = git media smudge %f
 required = true
 clean = git hawser clean %f
 smudge = git hawser smudge %f
+
+[filter "lfs"]
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true
