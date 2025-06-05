@@ -54,6 +54,9 @@ Thumbs.db
 __pycache__/
 .venv
 
+# Me-isms
+_cruft*/
+
 # Direnv files
 .direnv
 .envrc
