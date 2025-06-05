@@ -1,12 +1,19 @@
 #!/bin/zsh
 
-# I always want this and just didn't know where else to put it
-set -o vi
-
-# Load a host-specific config (if any) to establish locations of a few key binaries
+# Load a host-specific config (if any) to establish locations of key binaries
 HOST=$(hostname -s | sed 's/-.gbe$//g' | tr "[:upper:]" "[:lower:]")
 [[ -r ${HOME}/.dotfiles.local/${HOST}-bootstrap ]] &&
     . ${HOME}/.dotfiles.local/${HOST}-bootstrap
+
+export EDITOR=${HOMEBREW_PREFIX}/bin/vim
+
+set -o vi
+
+export GZIP=-9
+export BZIP=-9
+
+export CASE_SENSITIVE="true"
+export QUOTING_STYLE=literal
 
 eval $(/usr/libexec/path_helper -s)
 
@@ -28,30 +35,12 @@ unsetopt INC_APPEND_HISTORY
 setopt INC_APPEND_HISTORY_TIME
 setopt EXTENDED_HISTORY
 
-export CASE_SENSITIVE="true"
-export QUOTING_STYLE=literal
-
 # Symlink additional configs here to have them sourced, numbering for order
 # (fpath completions should get run here)
 for CFG in ${HOME}/.dotfiles/enabled/??-*; do
     . ${CFG}
 done
 
-# Now, for the pretty stuff, either do this:
-# export ZSH="${HOME}/.oh-my-zsh"
-# export ZSH_THEME="dracula"
-
-# . ${ZSH}/oh-my-zsh.sh
-
-# export ZSH="${HOME}/.oh-my-zsh"
-# export ZSH_THEME="dracula"
-
-# plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
-
-# zstyle ':completion:*' completer _complete _ignored
-# zstyle :compinstall filename '/Users/scott/.zshrc'
-
-# ...or do this:
 STARSHIP=${STARSHIP:-${HOMEBREW_PREFIX}/bin/starship}
 
 # see: https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
@@ -75,12 +64,10 @@ source ${HOMEBREW_PREFIX}/etc/bash_completion.d/az
 source ${HOME}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ${HOME}/.zsh/zsh-hist/zsh-hist.plugin.zsh
-source ${HOME}/.config/asdf-direnv/zshrc
 source ${HOME}/.fzf.zsh
 
 eval "$(${STARSHIP} init zsh)"
 export STARSHIP_CONFIG=${HOME}/.config/starship/starship.toml
-# END: or
 
 # Ref: https://zsh.sourceforge.io/Doc/Release/User-Contributions.html#Accessing-On_002dLine-Help
 unalias run-help
