@@ -43,8 +43,6 @@ Thumbs.db
 *.swp
 *.code-workspace
 .vscode/
-.cursorrules
-.copilot_instructions.md
 
 # Ruby-isms
 .ruby-version
