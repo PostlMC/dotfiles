@@ -105,6 +105,14 @@ ghostars() {
     done
 }
 
+gitlarge () {
+    # List objects in the repository sorted by size
+    # (not necessarily the largest files, but the largest objects)
+    # Note: this will not work on a bare repository
+    git rev-list --objects --all | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' | \
+        grep -v tag | sort -k3nr
+}
+
 # Misc
 ls-() {
     ls -$@
