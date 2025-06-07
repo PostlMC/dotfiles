@@ -29,9 +29,6 @@ tc = rev-list -n 1
 sh = show
 serve = daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
 
-[rerere]
-enabled = 1
-
 [color]
 ui = true
 
@@ -43,6 +40,12 @@ default = simple
 
 [pull]
 rebase = false
+
+[fetch]
+prune = true
+
+[rerere]
+enabled = 1
 
 [filter "media"]
 required = true
