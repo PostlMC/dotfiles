@@ -1,5 +1,0 @@
-auto_activate_base: true
-ssl_verify: true
-channels:
-  - defaults
-changeps1: false
