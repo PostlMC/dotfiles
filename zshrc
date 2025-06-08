@@ -5,25 +5,37 @@ HOST=$(hostname -s | sed 's/-.gbe$//g' | tr "[:upper:]" "[:lower:]")
 [[ -r ${HOME}/.dotfiles.local/${HOST}-bootstrap ]] &&
     . ${HOME}/.dotfiles.local/${HOST}-bootstrap
 
+# macOS: set up system paths
+if [[ "$(uname)" == "Darwin" ]]; then
+    eval $(/usr/libexec/path_helper -s)
+else
+    # TBD: Might need to set up /etc/profile.d or similar here later on *nixes
+    :
+fi
+
+if command -v brew &>/dev/null; then
+    eval "$(brew shellenv)"
+fi
+
 export EDITOR=${HOMEBREW_PREFIX}/bin/vim
 
 set -o vi
 
 export GZIP=-9
-export BZIP=-9
 
 export CASE_SENSITIVE="true"
 export QUOTING_STYLE=literal
 
-eval $(/usr/libexec/path_helper -s)
-
-# export HISTFILE=~/.zsh_history
+# History configuration (works on both macOS and Linux)
+export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000
 export SAVEHIST=1000000
-# export HISTTIMEFORMAT="[%F %T] "
-# export HIST_STAMPS="yyyy-mm-dd"
+
+# Timestamps: zsh stores timestamps if EXTENDED_HISTORY is set (see below).
+# To view timestamps, use: history -i
 
 # Ref: https://zsh.sourceforge.io/Doc/Release/Options.html#Options
+# History sharing: unsetopt SHARE_HISTORY means each session keeps its own history until exit.
 unsetopt SHARE_HISTORY
 setopt HIST_IGNORE_SPACE
 setopt HIST_IGNORE_ALL_DUPS
@@ -46,10 +58,10 @@ STARSHIP=${STARSHIP:-${HOMEBREW_PREFIX}/bin/starship}
 # see: https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
 # fpath=(${HOME}/.zsh/zsh-completions/src $fpath)
 
-autoload -U +X compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
-# autoload -Uz compinit && compinit
-# autoload -Uz bashcompinit && bashcompinit
+# Completion system setup
+# Only run compinit once; -C skips security checks (faster, but only if you trust your completions)
+autoload -U +X compinit && compinit -C
+autoload -U +X bashcompinit && bashcompinit # Needed for bash-style 'complete' below
 
 # (post compinit completions now can be run)
 whence -w kubectl &>/dev/null &&
@@ -59,12 +71,15 @@ whence -w kubelogin &>/dev/null &&
 
 complete -o nospace -C /Users/scott/.asdf/shims/terraform terraform
 
-source ${HOMEBREW_PREFIX}/etc/bash_completion.d/az
+[[ -f ${HOMEBREW_PREFIX}/etc/bash_completion.d/az ]] && source ${HOMEBREW_PREFIX}/etc/bash_completion.d/az
 
-source ${HOME}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ${HOME}/.zsh/zsh-hist/zsh-hist.plugin.zsh
-source ${HOME}/.fzf.zsh
+# Guard plugin sources with file existence checks
+[[ -f ${HOME}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]] &&
+    source ${HOME}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ -f ${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] &&
+    source ${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -f ${HOME}/.zsh/zsh-hist/zsh-hist.plugin.zsh ]] && source ${HOME}/.zsh/zsh-hist/zsh-hist.plugin.zsh
+[[ -f ${HOME}/.fzf.zsh ]] && source ${HOME}/.fzf.zsh
 
 eval "$(${STARSHIP} init zsh)"
 export STARSHIP_CONFIG=${HOME}/.config/starship/starship.toml
