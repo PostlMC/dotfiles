@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# The above shebang is just here as a hint for VSCode, etc. in all these files.  Most
+# files here are actually intended to work in several shells. (e.g., bash, zsh)
+
+# NOTE: This file only defines a few functions that are used by subsequently called
+# files to actually modify the environment.
+
+# Dug up on https://unix.stackexchange.com/questions/4965/keep-duplicates-out-of-path-on-source,
+# where they were orginally credited to fink; primarily used to provide PATH modification
+# idempotence needed to fix things like VSCode's insistance on using login shells...
+append_path() {
+    local var_name="$1"
+    local new_path="$2"
+    local current_path
+
+    # Handle unset variables
+    eval "current_path=\${$var_name:-}"
+
+    if [ -z "$current_path" ]; then
+        eval "$var_name=$new_path"
+    elif ! eval "case :\${$var_name}: in *:$new_path:*) true ;; *) false ;; esac"; then
+        eval "$var_name=\${$var_name}:$new_path"
+    fi
+}
+
+prepend_path() {
+    local var_name="$1"
+    local new_path="$2"
+    local current_path
+
+    # Handle unset variables
+    eval "current_path=\${$var_name:-}"
+
+    if [ -z "$current_path" ]; then
+        eval "$var_name=$new_path"
+    elif ! eval "case :\${$var_name}: in *:$new_path:*) true ;; *) false ;; esac"; then
+        eval "$var_name=$new_path:\${$var_name}"
+    fi
+}
+
+# Courtesy: https://stackoverflow.com/questions/1527049/how-can-i-join-elements-of-an-array-in-bash
+join_by() {
+    local IFS="$1"
+    shift
+    if [ -n "$*" ]; then
+        echo "$*"
+    else
+        echo ""
+    fi
+}
