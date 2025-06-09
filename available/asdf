@@ -1,8 +1,0 @@
-#!/bin/zsh
-
-# [[ -r ${HOME}/.asdf/asdf.sh ]] &&
-#     . ${HOME}/.asdf/asdf.sh &&
-#     fpath=(${ASDF_DIR}/completions $fpath)
-
-prepend_path PATH "${ASDF_DATA_DIR:-$HOME/.asdf}/shims"
-fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)

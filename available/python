@@ -1,26 +1,5 @@
 #!/bin/bash
 
-# For the uv default installed with: `uv python install 3.12 --default --preview`
-prepend_path PATH ${HOME}/.local/bin
-
-# whence -w pip &>/dev/null && {
-#     alias pip='python -m pip'
-#     alias pip-up='pip install -U $(pip freeze --local | awk -F "(==|@)" '\''!/(-e|^#)/{print $1}'\'') && asdf reshim python'
-#     alias gpip='PIP_REQUIRE_VIRTUALENV=false python -m pip'
-#     alias gpip-up='gpip install -U $(gpip freeze --local | awk -F "(==|@)" '\''!/(-e|^#)/{print $1}'\'') && asdf reshim python'
-# }
-
-# whence -w pip3 &>/dev/null && {
-#     alias pip3='python3 -m pip'
-#     alias pip3-up='pip install -U \$(pip3 freeze --local | awk -F "(==|@)" '\''!/(-e|^#)/{print $1}'\'') && asdf reshim python'
-#     alias gpip3='PIP_REQUIRE_VIRTUALENV=false python -m pip3'
-#     alias gpip3-up='gpip install -U \$(gpip3 freeze --local | awk -F "(==|@)" '\''!/(-e|^#)/{print $1}'\'') && asdf reshim python'
-# }
-
-# Is this really breaking asdf now?
-whence -w asdf &>/dev/null &&
-    alias gasdf='PIP_REQUIRE_VIRTUALENV=false asdf'
-
 gpip() {
     PIP_REQUIRE_VIRTUALENV=false
     python -m pip "$@"
@@ -33,17 +12,3 @@ gpip3() {
 
 export PIP_REQUIRE_VIRTUALENV=true
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-
-export POETRY_VIRTUALENVS_IN_PROJECT=true
-export POETRY_VIRTUALENVS_PATH="{project-dir}/.venv"
-
-# export WORKON_HOME=$HOME/.virtualenvs
-# . $(asdf where python)/bin/virtualenvwrapper.sh
-
-# whence -w pyenv &>/dev/null &&
-#     eval "$(pyenv init -)" &&
-#     eval "$(pyenv virtualenv-init -)" &&
-#     prepend_path PATH $(pyenv root)/shims &&
-#     alias brew='env PATH="${PATH//$(pyenv root)/shims:/}" ${HOMEBREW_PREFIX}/bin/brew' # &&
-#     export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-# alias brew86='env PATH="${PATH//$(pyenv root)/shims:/}" arch -x86_64 /usr/local/bin/brew'

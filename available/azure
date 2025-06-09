@@ -5,3 +5,6 @@
 az-abn() {
     az account list | jq -r --arg name "$1" 'map(select(.name | test($name; "i"))) | .[].id'
 }
+
+[[ -f ${HOMEBREW_PREFIX}/etc/bash_completion.d/az ]] &&
+    source ${HOMEBREW_PREFIX}/etc/bash_completion.d/az

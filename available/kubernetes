@@ -1,37 +1,41 @@
 #!/bin/bash
 
-# The K8s
-alias k='kubectl'
-alias kv='kubectl -v=7'
-alias kv8='kubectl -v=8'
+if command -v kubectl >/dev/null 2>&1; then
 
-alias ktaints='kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints'
+    source <(kubectl completion zsh)
 
-ka() { kubectl "$@" --all-namespaces; }
-knh() { kubectl "$@" --no-headers; }
-kf() { kubectl "$@" --grace-period=0 --force; }
-kdr() { kubectl "$@" --dry-run=client -o yaml; }
-ke() { kubectl explain ${1} --recursive | less; }
+    alias k='kubectl'
+    alias kv='kubectl -v=7'
+    alias kv8='kubectl -v=8'
 
-kcfg() {
-    [ -d ~/.kube ] && [ -s ~/.kube/current-context ] &&
-        echo ~/.kube/current-context:$(
-            join_by : $(find ~/.kube -maxdepth 1 -type f \
-                \( -name '*.yml' -o -name '*.yaml' \) ! -name '.*' ! -name '_*')
-        )
-}
+    alias ktaints='kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints'
+
+    alias kctx='kubectl config use-context'
+
+    alias kimg="kubectl get pods --all-namespaces -o json | jq -r '.items[].spec.containers[].image' | sort | uniq -c"
+    alias kans='kubectl get --all-namespaces $(kubectl api-resources | awk '\''$4~/true/{printf "%s ", $1}'\'')'
+
+    ka() { kubectl "$@" --all-namespaces; }
+    knh() { kubectl "$@" --no-headers; }
+    kf() { kubectl "$@" --grace-period=0 --force; }
+    kdr() { kubectl "$@" --dry-run=client -o yaml; }
+    ke() { kubectl explain "${1}" --recursive | less; }
+
+    kcfg() {
+        if [ -d ~/.kube ] && [ -s ~/.kube/current-context ]; then
+            echo ~/.kube/current-context:$(find ~/.kube -maxdepth 1 -type f \
+                \( -name '*.yml' -o -name '*.yaml' \) ! -name '.*' ! -name '_*' | tr '\n' ':')
+        fi
+    }
+
+    kns() { kubectl config set-context --current --namespace="${1}"; }
+fi
+
 export KUBECONFIG=$(kcfg)
 
-source <(kubectl completion ${SHELL##*/} 2>&1 >/dev/null)
-
-alias kctx='kubectl config use-context'
-kns() { kubectl config set-context --current --namespace=${1}; }
-
-alias kimg="kubectl get pods --all-namespaces -o json | jq -r '.items[].spec.containers[].image' | sort | uniq -c"
-alias ktaints='kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints'
-alias kans='kubectl get --all-namespaces $(python -c '\''import sys; print(" ".join(sys.argv[1:])'\'') $(kubectl api-resources|awk '\''$4~/true/{printf "%s ", $1}'\'')'
-
-# whence -w minikube &>/dev/null &&
+# whence -w minikube >/dev/null 2>&1 &&
 #     # minikube config set vm-driver hyperkit && \
 #     alias mk='KUBECONFIG=${HOME}/.kube/minikube.yml minikube' &&
 #     export MINIKUBE_IN_STYLE=false
+
+command -v kubelogin >/dev/null 2>&1 && source <(kubelogin completion zsh)
