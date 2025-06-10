@@ -132,7 +132,7 @@ send() {
     HOST=$1
     shift
     echo "Sending to $HOST:10301..."
-    if [ $(which pv) ]; then
+    if command -v pv >/dev/null 2>&1; then
         tar czf - $@ | pv | nc -Nv $HOST 10301
     else
         echo 1>&2 "pv not found, so no stats for you!"
