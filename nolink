@@ -1,7 +1,6 @@
-dotfiles.code-workspace
 available
 enabled
-README.md
 gitconfig
-mklinks
+mklinks.sh
 nolink
+README.md

@@ -1,9 +1,6 @@
 #!/bin/bash
 
-# Check if ssh is available
-if ! command -v ssh &>/dev/null; then
-    return
-fi
+command -v ssh >/dev/null 2>&1 || return
 
 # SSH aliases
 ## Useful for occasional debugging without changing configs

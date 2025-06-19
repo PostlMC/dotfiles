@@ -1,9 +1,6 @@
 #!/bin/bash
 
-# Check if openssl is available
-if ! command -v openssl &>/dev/null; then
-    return
-fi
+command -v openssl >/dev/null 2>&1 || return
 
 # OpenSSL aliases
 alias rsa='openssl rsa -noout -text'
@@ -42,16 +39,30 @@ dump-p7certs() { openssl pkcs7 -in $1 -print_certs |
     awk '/-----BEGIN/ {out=sprintf("'${1%.*}'-%02d.cer",++count); p=1} /-----END/ {print > out; p=0} p {print > out}'; }
 
 fix-cert-name() {
-    openssl x509 -in "${1}" -noout -subject |
-        awk -F' = ' '{print $NF}' |
-        sed '
-            s/.*/\L&/        # conver to lowercase (requires GNU sed!)
-            s/ - */-/g       # condense hyphenations
-            s/^\*/WILDCARD/  # label wildcards (I may hate this)
-            s/[)]$//         # drop trailing parens
-            s/ [(]/_/g       # condense/replace leading parens
-            s/[ :/()*]/_/g   # replace misc chars with underscore
-        '
+    # Check if we have GNU sed (required for lowercase conversion)
+    if sed --version 2>/dev/null | grep -q "GNU sed"; then
+        openssl x509 -in "${1}" -noout -subject |
+            awk -F' = ' '{print $NF}' |
+            sed '
+                s/.*/\L&/        # convert to lowercase (requires GNU sed!)
+                s/ - */-/g       # condense hyphenations
+                s/^\*/WILDCARD/  # label wildcards
+                s/[)]$//         # drop trailing parens
+                s/ [(]/_/g       # condense/replace leading parens
+                s/[ :/()*]/_/g   # replace misc chars with underscore
+            '
+    else
+        # Fallback for BSD sed (macOS)
+        openssl x509 -in "${1}" -noout -subject |
+            awk -F' = ' '{print $NF}' |
+            sed '
+                s/ - */-/g       # condense hyphenations
+                s/^\*/WILDCARD/  # label wildcards
+                s/[)]$//         # drop trailing parens
+                s/ [(]/_/g       # condense/replace leading parens
+                s/[ :/()*]/_/g   # replace misc chars with underscore
+            ' | tr '[:upper:]' '[:lower:]'
+    fi
 }
 
 aesenc() {

@@ -1,9 +1,6 @@
 #!/bin/bash
 
-# Check if git is available
-if ! command -v git &>/dev/null; then
-    return
-fi
+command -v git >/dev/null 2>&1 || return
 
 # Git aliases
 alias gitv='GIT_SSH_COMMAND="ssh -v" GIT_CURL_VERBOSE=1 GIT_TRACE=1 git'
@@ -32,6 +29,11 @@ getgit() {
 
 ## Assumes jq is available!
 ghostars() {
+    if ! command -v jq &>/dev/null || ! command -v curl &>/dev/null; then
+        echo "Error: jq and curl are required for ghostars function"
+        return 1
+    fi
+
     for ORG in $@; do
         printf "$ORG: %s\n" $(curl -s https://api.github.com/orgs/$ORG/repos |
             jq '[ .[] | .stargazers_count ] | add')

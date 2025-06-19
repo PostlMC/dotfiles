@@ -1,15 +1,11 @@
 #!/bin/bash
 
-if command -v terraform >/dev/null 2>&1; then
-    alias tf='terraform'
-    alias tfv='TF_LOG=INFO terraform'
-    alias tfvv='TF_LOG=TRACE terraform'
+command -v terraform >/dev/null 2>&1 || return
 
-    if [ -f "$(command -v terraform)" ]; then
-        complete -o nospace -C "$(command -v terraform)" terraform
-    fi
-fi
+alias tf='terraform'
+alias tfv='TF_LOG=INFO terraform'
+alias tfvv='TF_LOG=TRACE terraform'
 
-if command -v terragrunt >/dev/null 2>&1; then
-    alias tg='terragrunt'
-fi
+complete -o nospace -C "$(command -v terraform)" terraform
+
+command -v terragrunt >/dev/null 2>&1 && alias tg='terragrunt'

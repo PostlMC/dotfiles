@@ -2,4 +2,4 @@
 # in it, except one file that'll make it interesting enough to git to be tracked at all
 enabled/*
 !enabled/00-bootstrap
-!enabled/typical.sh
+!enabled/mklinks.sh
