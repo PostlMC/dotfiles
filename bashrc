@@ -25,6 +25,22 @@ export HISTFILESIZE=1000000
 export HISTCONTROL=ignoreboth:erasedups
 export HISTIGNORE="&:ls:[bf]g:exit"
 
+# Essential shell behavior for consistent history and command editing
+shopt -s histappend
+shopt -s checkwinsize
+
+# Function to manage shell options
+shopt-alias() {
+    for OPT in $(shopt | awk '{print $1}'); do
+        # Don't stomp on any existing stuff
+        if ! command -v $OPT >/dev/null 2>&1 && ! alias $OPT 2>/dev/null && ! declare -f $OPT; then
+            alias $OPT="if shopt -q $OPT; then shopt -u $OPT && echo \"$OPT off\"; \
+                else shopt -s $OPT && echo \"$OPT on\"; fi"
+        fi
+    done
+}
+shopt-alias
+
 # Source additional configs in .dotfiles/enabled, numbering for order
 for CFG in ${HOME}/.dotfiles/enabled/??-*; do
     [[ -r "${CFG}" ]] && . "${CFG}"
@@ -48,4 +64,3 @@ if command -v kubelogin &>/dev/null; then
 fi
 
 complete -o nospace -C /Users/scott/.asdf/shims/terraform terraform
-
