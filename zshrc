@@ -11,8 +11,8 @@ HOST=$(hostname -s | sed 's/-.gbe$//g' | tr "[:upper:]" "[:lower:]")
 
 # Set up completion paths
 fpath=(
-    ${HOME}/.zsh/completion
-    ${fpath}
+    ~/.zsh/completion
+    $fpath
 )
 
 # Cache completions

@@ -50,16 +50,13 @@ done
 [[ -d "${HOME}/.local/bin" ]] && prepend_path PATH ${HOME}/.local/bin
 [[ -d "${HOME}/bin" ]] && prepend_path PATH ${HOME}/bin
 
-if [ -f /usr/local/etc/bash_completion ]; then
+[[ -f /usr/local/etc/bash_completion ]] &&
     . /usr/local/etc/bash_completion
-elif [ -f /opt/homebrew/etc/profile.d/bash_completion.sh ]; then
-    . /opt/homebrew/etc/profile.d/bash_completion.sh
-fi
 
-if command -v kubectl &>/dev/null; then
+if command -v kubectl &>/dev/null 2>&1; then
     source <(kubectl completion bash)
 fi
-if command -v kubelogin &>/dev/null; then
+if command -v kubelogin &>/dev/null 2>&1; then
     source <(kubelogin completion bash)
 fi
 
