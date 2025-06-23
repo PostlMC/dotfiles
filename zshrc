@@ -72,3 +72,5 @@ setopt HIST_REDUCE_BLANKS
 unsetopt INC_APPEND_HISTORY
 setopt INC_APPEND_HISTORY_TIME
 setopt EXTENDED_HISTORY
+
+(($ + commands[fzf])) && eval "$(fzf --zsh)"

@@ -60,4 +60,4 @@ if command -v kubelogin &>/dev/null 2>&1; then
     source <(kubelogin completion bash)
 fi
 
-complete -o nospace -C /Users/scott/.asdf/shims/terraform terraform
+command -v fzf >/dev/null 2>&1 && eval "$(fzf --bash)"
